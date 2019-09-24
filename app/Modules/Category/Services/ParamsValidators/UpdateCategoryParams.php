@@ -2,17 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: rickyandhi
- * Date: 19/09/19
- * Time: 11:21
+ * Date: 23/09/19
+ * Time: 10:19
  */
 
 namespace App\Modules\Category\Services\ParamsValidators;
 
-use App\Modules\Category\Exceptions\CategoryIdDoesNotExistException;
+use App\Modules\Category\Exceptions\CategoryDoesNotExistException;
 use App\Modules\Category\Exceptions\CategoryNameExceedsLimitException;
 use App\Modules\Category\Services\CategoryService\CategoryServiceInterface;
 
-class CreateCategoryParams
+class UpdateCategoryParams
 {
     private $categoryService;
 
@@ -20,6 +20,11 @@ class CreateCategoryParams
      * @var string
      */
     private $name;
+
+    /**
+     * @var integer
+     */
+    private $categoryId;
 
     /**
      * @var integer
@@ -65,16 +70,37 @@ class CreateCategoryParams
         return $this->parentCategoryId;
     }
 
+    /**
+     * @return int
+     */
+    public function getCategoryId(): int
+    {
+        return $this->categoryId;
+    }
+
+    /**
+     * @param int $categoryId
+     */
+    public function setCategoryId(int $categoryId): void
+    {
+        $this->categoryId = $categoryId;
+    }
+
     public function validate()
     {
         if (strlen($this->name) > 191) {
             throw new CategoryNameExceedsLimitException('category_name_exceed_limit_exception');
         }
 
+        $category = $this->categoryService->getCategoryById($this->getCategoryId());
+        if (is_null($category)) {
+            throw new CategoryDoesNotExistException('category_does_not_exist_exception');
+        }
+
         if (!is_null($this->getParentCategoryId())) {
             $parentCategory = $this->categoryService->getCategoryById($this->getParentCategoryId());
             if (is_null($parentCategory)) {
-                throw new CategoryIdDoesNotExistException('category_does_not_exist_exception');
+                throw new CategoryDoesNotExistException('parent_category_does_not_exist_exception');
             }
         }
     }

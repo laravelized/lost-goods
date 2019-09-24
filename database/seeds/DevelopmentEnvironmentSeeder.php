@@ -17,5 +17,6 @@ class DevelopmentEnvironmentSeeder extends Seeder
         $this->call(AdminAccountSeeder::class);
         $this->call(CategoriesTableSeeder::class);
         $this->call(UserAccountSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
     }
 }

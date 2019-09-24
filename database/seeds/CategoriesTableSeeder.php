@@ -33,7 +33,7 @@ class CategoriesTableSeeder extends Seeder
                 } else {
                     \App\Modules\Category\Models\Category::create([
                         'name' => $childCategoryName,
-                        'parent_category_id' => $parentCategory
+                        'parent_category_id' => $parentCategory->id
                     ]);
                 }
             }

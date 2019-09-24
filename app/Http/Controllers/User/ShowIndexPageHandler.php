@@ -2,19 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: rickyandhi
- * Date: 19/09/19
- * Time: 22:29
+ * Date: 24/09/19
+ * Time: 19:59
  */
 
-namespace App\Http\Controllers\Admin\Dashboard;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ShowDashboardPageHandler extends Controller
+class ShowIndexPageHandler extends Controller
 {
     public function __invoke(Request $request)
     {
-        return view('admin.dashboard.index');
+        return view('user.index');
     }
 }

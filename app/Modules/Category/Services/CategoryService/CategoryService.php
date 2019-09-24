@@ -25,12 +25,28 @@ class CategoryService implements CategoryServiceInterface
     public function create(array $params): Category
     {
         return $this->categoryRepository->create([
-            'name' => $params['name']
+            'name' => $params['name'],
+            'parent_category_id' => $params['parent_category_id'] ?? null
         ]);
     }
 
     public function getAllCategories(): Collection
     {
         return $this->categoryRepository->getAllCategories();
+    }
+
+    public function getCategoryById(int $id): ?Category
+    {
+        return $this->categoryRepository->getCategoryById($id);
+    }
+
+    public function updateCategory(Category $category, array $params): void
+    {
+        $this->categoryRepository->updateCategory($category, $params);
+    }
+
+    public function deleteCategory(Category $category): void
+    {
+        $this->categoryRepository->deleteCategory($category);
     }
 }

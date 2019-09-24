@@ -31,4 +31,22 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         return $this->model->all();
     }
+
+    public function getCategoryById(int $id): ?Category
+    {
+        return $this->model->where('id', $id)->first();
+    }
+
+    public function updateCategory(Category $category, array $params): void
+    {
+        $category->update([
+            'name' => $params['name'],
+            'parent_category_id' => $params['parent_category_id'] ?? null
+        ]);
+    }
+
+    public function deleteCategory(Category $category): void
+    {
+        $category->delete();
+    }
 }

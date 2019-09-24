@@ -9,12 +9,23 @@
 namespace App\Http\Controllers\Admin\Dashboard\Category;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\ShowCreateCategoryFormRequest;
+use App\Modules\Category\Services\CategoryService\CategoryServiceInterface;
 
 class ShowCreateCategoryFormHandler extends Controller
 {
-    public function __invoke(Request $request)
+    private $categoryService;
+
+    public function __construct(CategoryServiceInterface $categoryService)
     {
-        return view('admin.dashboard.category.create');
+        $this->categoryService = $categoryService;
+    }
+
+    public function __invoke(ShowCreateCategoryFormRequest $request)
+    {
+        $categories = $this->categoryService->getAllCategories();
+        return view('admin.dashboard.category.create', [
+            'categories' => $categories
+        ]);
     }
 }

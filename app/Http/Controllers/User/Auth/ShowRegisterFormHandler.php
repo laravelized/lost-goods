@@ -2,19 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: rickyandhi
- * Date: 19/09/19
- * Time: 22:29
+ * Date: 24/09/19
+ * Time: 20:15
  */
 
-namespace App\Http\Controllers\Admin\Dashboard;
+namespace App\Http\Controllers\User\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ShowDashboardPageHandler extends Controller
+class ShowRegisterFormHandler extends Controller
 {
     public function __invoke(Request $request)
     {
-        return view('admin.dashboard.index');
+        return view('user.auth.register');
     }
 }

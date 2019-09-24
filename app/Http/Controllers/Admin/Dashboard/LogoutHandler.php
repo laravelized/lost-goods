@@ -2,19 +2,23 @@
 /**
  * Created by PhpStorm.
  * User: rickyandhi
- * Date: 19/09/19
- * Time: 22:29
+ * Date: 24/09/19
+ * Time: 18:13
  */
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ShowDashboardPageHandler extends Controller
+class LogoutHandler extends Controller
 {
     public function __invoke(Request $request)
     {
-        return view('admin.dashboard.index');
+        Auth::logout();
+
+        return redirect()
+            ->route('admin.login.form');
     }
 }

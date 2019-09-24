@@ -16,4 +16,10 @@ interface CategoryServiceInterface
     public function create(array $params): Category;
 
     public function getAllCategories(): Collection;
+
+    public function getCategoryById(int $id): ?Category;
+
+    public function updateCategory(Category $category, array $params): void;
+
+    public function deleteCategory(Category $category): void;
 }

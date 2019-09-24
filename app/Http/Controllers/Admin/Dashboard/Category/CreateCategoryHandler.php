@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Admin\Dashboard\Category;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCategoryRequest;
 use App\Modules\Category\Actions\CreateCategoryAction;
 use Illuminate\Http\Request;
 
@@ -16,24 +17,20 @@ class CreateCategoryHandler extends Controller
 {
     private $createCategoryAction;
 
-    public function __construct(CreateCategoryAction $createCategoryAction)
+    public function __construct(
+        CreateCategoryAction $createCategoryAction
+    )
     {
         $this->createCategoryAction = $createCategoryAction;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(CreateCategoryRequest $request)
     {
-        $request->validate([
-            'category_name' => [
-                'required',
-                'max:191'
-            ]
-        ]);
-
         try {
 
             $this->createCategoryAction->act([
-                'name' => $request->input('category_name')
+                'name' => $request->input('category_name'),
+                'parent_category_id' => $request->input('parent_category_id') ?? null
             ]);
 
             return back()
@@ -42,7 +39,7 @@ class CreateCategoryHandler extends Controller
         } catch (\Exception $exception) {
 
             return back()
-                ->with('exception', trans('exception' . $exception->getMessage()));
+                ->with('exception', trans('exception_' . $exception->getMessage()));
         }
     }
 }

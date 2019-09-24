@@ -20,9 +20,10 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "bootstrap": "4.3.1",
         "@fortawesome/fontawesome-free": "^5.11.1",
+        "bootstrap": "4.3.1",
         "jquery": "3.4.1",
-        "jquery.easing": "1.4.1"
+        "jquery.easing": "1.4.1",
+        "popper.js": "^1.15.0"
     }
 }

@@ -9,8 +9,8 @@
 namespace App\Http\Controllers\Admin\Dashboard\Category;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ShowCategoriesListRequest;
 use App\Modules\Category\Repositories\CategoryRepository\CategoryRepositoryInterface;
-use Illuminate\Http\Request;
 
 class ShowIndexPageHandler extends Controller
 {
@@ -23,7 +23,7 @@ class ShowIndexPageHandler extends Controller
         $this->categoryService = $categoryRepository;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(ShowCategoriesListRequest $request)
     {
         try {
             $categories = $this->categoryService->getAllCategories();
@@ -32,7 +32,7 @@ class ShowIndexPageHandler extends Controller
             ]);
         } catch (\Exception $exception) {
             return back()
-                ->with('exceptions', $exception->getMessage());
+                ->with('exception', $exception->getMessage());
         }
     }
 }
