@@ -22,6 +22,8 @@
 
 @include('user.components.navbar')
 
+@include('user.components.alerts')
+
 @yield('content')
 
 @include('user.components.footer')

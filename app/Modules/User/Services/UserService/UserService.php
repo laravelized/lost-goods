@@ -26,4 +26,24 @@ class UserService implements UserServiceInterface
     {
         return $this->userRepository->getByUsername($userName);
     }
+
+    public function createUser(array $params): User
+    {
+        return $this->userRepository->createUser($params);
+    }
+
+    public function doUserExistByUsername(string $username): bool
+    {
+        return $this->userRepository->doUserExistByUsername($username);
+    }
+
+    public function doUserExistByMobileNumber(string $mobileNumber): bool
+    {
+        return $this->userRepository->doUserExistByMobileNumber($mobileNumber);
+    }
+
+    public function doUserExistByEmail(string $email): bool
+    {
+        return $this->userRepository->doUserExistByEmail($email);
+    }
 }

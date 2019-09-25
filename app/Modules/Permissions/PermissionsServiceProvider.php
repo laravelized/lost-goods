@@ -14,6 +14,8 @@ use App\Modules\Permissions\Repositories\RoleRepository\RoleRepository;
 use App\Modules\Permissions\Repositories\RoleRepository\RoleRepositoryInterface;
 use App\Modules\Permissions\Services\PermissionService\PermissionService;
 use App\Modules\Permissions\Services\PermissionService\PermissionServiceInterface;
+use App\Modules\Permissions\Services\RoleService\RoleService;
+use App\Modules\Permissions\Services\RoleService\RoleServiceInterface;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -69,6 +71,8 @@ class PermissionsServiceProvider extends ServiceProvider
             PermissionServiceInterface::class,
             PermissionService::class
         );
+
+        $this->app->bind(RoleServiceInterface::class, RoleService::class);
 
         $this->app->singleton(PermissionService::class, function (Application $application) {
             return new Services\PermissionService\PermissionService(

@@ -7,7 +7,8 @@
                 <div class="card">
                     <div class="card-header">Register</div>
                     <div class="card-body">
-                        <form action="" method="">
+                        <form action="{{ route('user.register') }}" method="POST">
+                            @csrf
                             <div class="form-group">
                                 <label for="">Username</label>
                                 <input name="username" type="text" class="form-control">
@@ -26,10 +27,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Gender</label>
-                                <select name="" id="" class="form-control">
+                                <select name="gender" id="" class="form-control">
                                     <option value="">Select your gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
                                 </select>
                             </div>
                             <div class="form-group">

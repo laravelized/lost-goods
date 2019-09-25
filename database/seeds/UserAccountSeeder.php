@@ -22,7 +22,7 @@ class UserAccountSeeder extends Seeder
                     'email' => 'user@user.com',
                     'password' => \Illuminate\Support\Facades\Hash::make('password'),
                     'mobile_number' => '0812345671',
-                    'gender' => \App\Modules\User\Enum\UserGenderEnum::MALE,
+                    'gender' => \App\Modules\User\Enum\UserGenderEnum::MALE['value'],
                     'address' => 'Jl. Pocong no 19, Malang, Jawa Timur'
                 ]
             ]

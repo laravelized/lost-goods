@@ -14,4 +14,12 @@ use App\Modules\User\Models\User;
 interface UserServiceInterface
 {
     public function getByUsername(string $userName): ?User;
+
+    public function createUser(array $params): User;
+
+    public function doUserExistByEmail(string $email): bool;
+
+    public function doUserExistByUsername(string $username): bool;
+
+    public function doUserExistByMobileNumber(string $mobileNumber): bool;
 }

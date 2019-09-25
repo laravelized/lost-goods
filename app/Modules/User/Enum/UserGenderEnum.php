@@ -10,6 +10,23 @@ namespace App\Modules\User\Enum;
 
 class UserGenderEnum
 {
-    const MALE = 0;
-    const FEMALE = 1;
+    const MALE = [
+        'value' => 0,
+        'key' => 'male'
+    ];
+
+    const FEMALE = [
+        'value' => 1,
+        'key' => 'female'
+    ];
+
+    const OPTIONS = [
+        self::MALE,
+        self::FEMALE
+    ];
+
+    const AVAILABLE_VALUES = [
+        self::MALE['value'],
+        self::FEMALE['value']
+    ];
 }

@@ -13,4 +13,12 @@ use App\Modules\User\Models\User;
 interface UserRepositoryInterface
 {
     public function getByUsername(string $username): ?User;
+
+    public function createUser(array $params): User;
+
+    public function doUserExistByEmail(string $email): bool;
+
+    public function doUserExistByUsername(string $username): bool;
+
+    public function doUserExistByMobileNumber(string $mobileNumber): bool;
 }
