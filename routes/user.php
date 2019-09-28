@@ -17,4 +17,11 @@ Route::group(['namespace' => 'User'], function ($route) {
 
     $route->post('/logout', 'LogoutHandler')
         ->name('user.logout');
+
+    $route->get('/founds/my/list', 'Found\ShowUserFoundsListHandler')
+        ->name('user.founds.my.list');
+    $route->get('/founds/my/create', 'Found\ShowPostFoundFormHandler')
+        ->name('user.founds.my.post.form');
+    $route->post('/founds/my/create', 'Found\PostFoundHandler')
+        ->name('user.founds.my.post');
 });

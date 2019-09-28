@@ -49,4 +49,9 @@ class CategoryService implements CategoryServiceInterface
     {
         $this->categoryRepository->deleteCategory($category);
     }
+
+    public function getCategoryByName(string $name): ?Category
+    {
+        return $this->categoryRepository->getCategoryByName($name);
+    }
 }

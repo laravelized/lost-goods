@@ -49,4 +49,9 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $category->delete();
     }
+
+    public function getCategoryByName(string $name): ?Category
+    {
+        $this->model->where('name', $name)->first();
+    }
 }

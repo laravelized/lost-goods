@@ -175,9 +175,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        \App\Services\Uploader\UploaderServiceProvider::class,
+        \App\Services\StringService\StringServiceProvider::class,
+
         \App\Modules\Permissions\PermissionsServiceProvider::class,
         \App\Modules\User\UserServiceProvider::class,
-        \App\Modules\Category\CategoryServiceProvider::class
+        \App\Modules\Category\CategoryServiceProvider::class,
+        \App\Modules\LostGoods\LostGoodServiceProvider::class
 
 
     ],

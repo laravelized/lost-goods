@@ -14,6 +14,12 @@
 
     <link href="{{ asset('css/user.all.css') }}" rel="stylesheet">
 
+    <style>
+        html, body {
+            min-height: 100vh;
+        }
+    </style>
+
     @stack('after-style')
 
 </head>
@@ -24,7 +30,9 @@
 
 @include('user.components.alerts')
 
-@yield('content')
+<div class="container" style="min-height: 100vh;">
+    @yield('content')
+</div>
 
 @include('user.components.footer')
 

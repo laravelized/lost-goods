@@ -23,6 +23,7 @@ class CreateLostGoodsTable extends Migration
             $table->tinyInteger('type');
             $table->text('place_details');
             $table->dateTime('date');
+            $table->string('mobile_number');
             $table->timestamps();
         });
 

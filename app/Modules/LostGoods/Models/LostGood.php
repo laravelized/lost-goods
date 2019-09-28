@@ -15,4 +15,9 @@ class LostGood extends Model
     protected $table = 'lost_goods';
 
     protected $guarded = [];
+
+    public function lostGoodImages()
+    {
+        return $this->hasMany(LostGoodImage::class);
+    }
 }

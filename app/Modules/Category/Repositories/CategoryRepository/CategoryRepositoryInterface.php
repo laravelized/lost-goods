@@ -22,4 +22,6 @@ interface CategoryRepositoryInterface
     public function updateCategory(Category $category, array $params): void;
 
     public function deleteCategory(Category $category): void;
+
+    public function getCategoryByName(string $name): ?Category;
 }
