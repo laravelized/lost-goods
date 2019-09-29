@@ -9,13 +9,13 @@
                         <h3>Update found</h3>
                     </div>
                     <div class="card-body">
-                        <form enctype="multipart/form-data" action="{{ route('user.founds.my.post') }}" method="POST">
+                        <form enctype="multipart/form-data" action="{{ route('user.founds.my.update', ['lostGoodId' => $lostGood->id]) }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">Name</label>
-                                        <input name="name" type="text" class="form-control">
+                                        <input value="{{ $lostGood->name }}" name="name" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Category</label>
@@ -27,13 +27,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Place of found</label>
-                                        <input name="place_of_found" type="text" class="form-control">
+                                        <input value="{{ $lostGood->place_details }}" name="place_of_found" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">Date of found</label>
-                                        <input id="date_of_found_input" name="date_of_found" type="text" class="form-control">
+                                        <input value="{{ $lostGood->date->format('Y-m-d') }}" id="date_of_found_input" name="date_of_found" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Image</label>
@@ -41,16 +41,16 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Information</label>
-                                        <textarea name="information"  cols="30" rows="10" class="form-control"></textarea>
+                                        <textarea name="information"  cols="30" rows="10" class="form-control">{{ $lostGood->information }}</textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="">Mobile number</label>
-                                        <input type="text" class="form-control" name="mobile_number">
+                                        <input value="{{ $lostGood->mobile_number }}" type="text" class="form-control" name="mobile_number">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <button class="btn btn-success">Save</button>
+                                        <button class="btn btn-success">Update</button>
                                     </div>
                                 </div>
                             </div>

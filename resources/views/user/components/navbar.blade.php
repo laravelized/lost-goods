@@ -17,23 +17,23 @@
             @else
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">Notifications</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#">Notification 1</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Users contents</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Others contents</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#">Losts</a>
-                        <a class="dropdown-item" href="{{ route('user.founds.my.list') }}">Founds</a>
+                        <a class="dropdown-item" href="{{ route('user.founds.others.list') }}">Founds</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Post your contents</a>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Your contents</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#">Losts</a>
                         <a class="dropdown-item" href="{{ route('user.founds.my.list') }}">Founds</a>

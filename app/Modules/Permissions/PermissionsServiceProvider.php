@@ -8,6 +8,7 @@
 
 namespace App\Modules\Permissions;
 
+use App\Modules\Permissions\Policies\AccessPagePolicy;
 use App\Modules\Permissions\Repositories\PermissionRepository\PermissionRepository;
 use App\Modules\Permissions\Repositories\PermissionRepository\PermissionRepositoryInterface;
 use App\Modules\Permissions\Repositories\RoleRepository\RoleRepository;
@@ -24,35 +25,15 @@ class PermissionsServiceProvider extends ServiceProvider
 {
     public function boot(PermissionServiceInterface $permissionService)
     {
-        Gate::define(Permissions::ACCESS_USER_DASHBOARD, function ($user) use ($permissionService) {
-            $permissionNames = $permissionService->getPermissionsNameByUser($user);
-            return in_array(Permissions::ACCESS_USER_DASHBOARD, $permissionNames->toArray());
-        });
+        Gate::define(
+            Permissions::ACCESS_USER_DASHBOARD,
+            AccessPagePolicy::class . '@accessUserDashboard'
+        );
 
-        Gate::define(Permissions::ACCESS_ADMIN_DASHBOARD, function ($user) use ($permissionService) {
-            $permissionNames = $permissionService->getPermissionsNameByUser($user);
-            return in_array(Permissions::ACCESS_ADMIN_DASHBOARD, $permissionNames->toArray());
-        });
-
-        Gate::define(Permissions::CREATE_CATEGORY, function ($user) use ($permissionService) {
-            $permissionNames = $permissionService->getPermissionsNameByUser($user);
-            return in_array(Permissions::CREATE_CATEGORY, $permissionNames->toArray());
-        });
-
-        Gate::define(Permissions::VIEW_CATEGORIES_LIST, function ($user) use ($permissionService) {
-            $permissionNames = $permissionService->getPermissionsNameByUser($user);
-            return in_array(Permissions::VIEW_CATEGORIES_LIST, $permissionNames->toArray());
-        });
-
-        Gate::define(Permissions::UPDATE_CATEGORY, function ($user) use ($permissionService) {
-            $permissionNames = $permissionService->getPermissionsNameByUser($user);
-            return in_array(Permissions::UPDATE_CATEGORY, $permissionNames->toArray());
-        });
-
-        Gate::define(Permissions::DELETE_CATEGORY, function ($user) use ($permissionService) {
-            $permissionNames = $permissionService->getPermissionsNameByUser($user);
-            return in_array(Permissions::DELETE_CATEGORY, $permissionNames->toArray());
-        });
+        Gate::define(
+            Permissions::ACCESS_ADMIN_DASHBOARD,
+            AccessPagePolicy::class . '@accessAdminDashboard'
+        );
     }
 
     public function register()

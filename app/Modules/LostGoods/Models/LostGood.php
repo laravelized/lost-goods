@@ -17,6 +17,10 @@ class LostGood extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'date' => 'date'
+    ];
+
     public function lostGoodImages()
     {
         return $this->hasMany(LostGoodImage::class);

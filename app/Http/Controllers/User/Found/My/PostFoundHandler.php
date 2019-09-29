@@ -6,7 +6,7 @@
  * Time: 20:24
  */
 
-namespace App\Http\Controllers\User\Found;
+namespace App\Http\Controllers\User\Found\My;
 
 use App\Http\Controllers\Controller;
 use App\Modules\LostGoods\Enum\LostGoodTypeEnum;

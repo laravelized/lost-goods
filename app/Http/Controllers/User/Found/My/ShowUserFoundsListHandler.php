@@ -6,7 +6,7 @@
  * Time: 19:26
  */
 
-namespace App\Http\Controllers\User\Found;
+namespace App\Http\Controllers\User\Found\My;
 
 use App\Http\Controllers\Controller;
 use App\Modules\LostGoods\Services\LostGoodService\LostGoodServiceInterface;
@@ -27,7 +27,8 @@ class ShowUserFoundsListHandler extends Controller
             $user = $request->user();
             $lostGoods = $this->lostGoodService->getFoundsByUser($user);
             return view('user.found.list', [
-                'lostGoods' => $lostGoods
+                'lostGoods' => $lostGoods,
+                'showCreateFoundButton' => true
             ]);
         } catch (\Exception $exception) {
 
