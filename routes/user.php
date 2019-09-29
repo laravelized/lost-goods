@@ -24,4 +24,16 @@ Route::group(['namespace' => 'User'], function ($route) {
         ->name('user.founds.my.post.form');
     $route->post('/founds/my/create', 'Found\PostFoundHandler')
         ->name('user.founds.my.post');
+    $route->get('/founds/{lostGoodId}/questions', 'Found\ShowQuestionsListHandler')
+        ->name('user.founds.questions.list');
+    $route->get('/founds/{lostGoodId}/questions/create', 'Found\ShowCreateQuestionFormHandler')
+        ->name('user.founds.questions.create.form');
+    $route->post('/founds/{lostGoodId}/questions/create', 'Found\CreateQuestionHandler')
+        ->name('user.founds.questions.create');
+    $route->get('/question/{questionId}/update', 'Found\ShowUpdateQuestionFormHandler')
+        ->name('user.question.update.form');
+    $route->post('/question/{questionId}/update', 'Found\UpdateQuestionHandler')
+        ->name('user.question.update');
+    $route->post('/question/{questionId}/delete', 'Found\DeleteQuestionHandler')
+        ->name('user.question.delete');
 });

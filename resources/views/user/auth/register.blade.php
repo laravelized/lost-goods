@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
+        <div class="row h-100 justify-content-center align-items-center" style="margin-top: 30px;">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Register</div>
@@ -11,7 +11,7 @@
                             @csrf
                             <div class="form-group">
                                 <label for="">Username</label>
-                                <input name="username" type="text" class="form-control">
+                                <input value="{{ old('username') }}" name="username" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Password</label>
@@ -23,7 +23,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Full name</label>
-                                <input name="full_name" type="text" class="form-control">
+                                <input value="{{ old('full_name') }}" name="full_name" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Gender</label>
@@ -35,11 +35,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Address</label>
-                                <input name="address" type="text" class="form-control">
+                                <input value="{{ old('address') }}" name="address" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Mobile number</label>
-                                <input name="mobile_number" type="text" class="form-control">
+                                <input value="{{ old('mobile_number') }}" name="mobile_number" type="text" class="form-control">
                             </div>
                             <div class="form-group">
                                 <button class="btn btn-block btn-success">Register</button>

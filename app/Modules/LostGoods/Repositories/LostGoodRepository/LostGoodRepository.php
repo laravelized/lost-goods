@@ -8,7 +8,10 @@
 
 namespace App\Modules\LostGoods\Repositories\LostGoodRepository;
 
+use App\Modules\LostGoods\Enum\LostGoodTypeEnum;
 use App\Modules\LostGoods\Models\LostGood;
+use App\Modules\User\Models\User;
+use Illuminate\Support\Collection;
 
 class LostGoodRepository implements LostGoodRepositoryInterface
 {
@@ -27,7 +30,8 @@ class LostGoodRepository implements LostGoodRepositoryInterface
             'information' => $params['information'],
             'type' => $params['type'],
             'place_details' => $params['place_details'],
-            'date' => $params['date']
+            'date' => $params['date'],
+            'mobile_number' => $params['mobile_number']
         ]);
     }
 
@@ -39,7 +43,26 @@ class LostGoodRepository implements LostGoodRepositoryInterface
             'information' => $params['information'],
             'type' => $params['type'],
             'place_details' => $params['place_details'],
-            'date' => $params['date']
+            'date' => $params['date'],
+            'mobile_number' => $params['mobile_number']
         ]);
+    }
+
+    public function getFoundsByUser(User $user): Collection
+    {
+        return $this->model
+            ->with(['lostGoodImages'])
+            ->where('user_id', $user->id)
+            ->where('type', LostGoodTypeEnum::FOUND)
+            ->get();
+    }
+
+    public function getLostsByUser(User $user): Collection
+    {
+        return $this->model
+            ->with(['lostGoodImages'])
+            ->where('user_id', $user->id)
+            ->where('type', LostGoodTypeEnum::LOST)
+            ->get();
     }
 }

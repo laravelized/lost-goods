@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Mobile number</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" name="mobile_number">
                                     </div>
                                 </div>
                                 <div class="col-12">

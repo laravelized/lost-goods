@@ -9,6 +9,7 @@
 namespace App\Modules\Category\Repositories\CategoryRepository;
 
 use App\Modules\Category\Models\Category;
+use App\Modules\LostGoods\Models\LostGood;
 use Illuminate\Support\Collection;
 
 interface CategoryRepositoryInterface
@@ -24,4 +25,6 @@ interface CategoryRepositoryInterface
     public function deleteCategory(Category $category): void;
 
     public function getCategoryByName(string $name): ?Category;
+
+    public function attachCategoryToLostGood(Category $category, LostGood $lostGood): void;
 }

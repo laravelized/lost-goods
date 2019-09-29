@@ -12,6 +12,8 @@ use App\Modules\LostGoods\Repositories\LostGoodImageRepository\LostGoodImageRepo
 use App\Modules\LostGoods\Repositories\LostGoodImageRepository\LostGoodImageRepositoryInterface;
 use App\Modules\LostGoods\Repositories\LostGoodRepository\LostGoodRepository;
 use App\Modules\LostGoods\Repositories\LostGoodRepository\LostGoodRepositoryInterface;
+use App\Modules\LostGoods\Repositories\QuestionRepository\QuestionRepository;
+use App\Modules\LostGoods\Repositories\QuestionRepository\QuestionRepositoryInterface;
 use App\Modules\LostGoods\Services\LostGoodImageService\LostGoodImageService;
 use App\Modules\LostGoods\Services\LostGoodImageService\LostGoodImageServiceInterface;
 use App\Modules\LostGoods\Services\LostGoodService\LostGoodService;
@@ -40,6 +42,11 @@ class LostGoodServiceProvider extends ServiceProvider
         $this->app->bind(
             LostGoodImageServiceInterface::class,
             LostGoodImageService::class
+        );
+
+        $this->app->bind(
+            QuestionRepositoryInterface::class,
+            QuestionRepository::class
         );
     }
 }

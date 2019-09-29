@@ -9,6 +9,7 @@
 namespace App\Modules\Category\Repositories\CategoryRepository;
 
 use App\Modules\Category\Models\Category;
+use App\Modules\LostGoods\Models\LostGood;
 use Illuminate\Support\Collection;
 
 class CategoryRepository implements CategoryRepositoryInterface
@@ -53,5 +54,10 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function getCategoryByName(string $name): ?Category
     {
         $this->model->where('name', $name)->first();
+    }
+
+    public function attachCategoryToLostGood(Category $category, LostGood $lostGood): void
+    {
+        $category->lostGoods()->attach($lostGood->id);
     }
 }
