@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        <div class="col-md-12 mt-5">
+        <div class="col-md-12 mt-3">
             <div class="row">
                 @foreach($lostGoods as $lostGood)
                     <div class="col-md-12 mt-1 mb-2">
@@ -39,7 +39,7 @@
                                             </tr>
                                             <tr>
                                                 <th>Tanggal hilang</th>
-                                                <td>{{ $lostGood->date }}</td>
+                                                <td>{{ $lostGood->date->format('d-m-Y') }}</td>
                                             </tr>
                                             <tr>
                                                 <th>Tempat hilang</th>

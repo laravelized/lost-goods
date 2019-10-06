@@ -1,31 +1,31 @@
 @extends('user.layouts.app')
 
 @section('content')
-    <div class="row mt-3">
-        <div class="col-md-12">
+    <div class="row mt-3 justify-content-center align-items-center">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h3>Pasang barang temuan</h3>
+                    <h5>Pasang barang temuan</h5>
                 </div>
                 <div class="card-body">
-                    <form enctype="multipart/form-data" action="{{ route('user.founds.my.post') }}" method="POST">
+                    <form autocomplete="off" enctype="multipart/form-data" action="{{ route('user.founds.my.post') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="">Judul barang</label>
-                                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror">
-                                    @error('name')
+                                    <input value="{{ old('good_name') }}" name="good_name" type="text" class="form-control @error('good_name') is-invalid @enderror">
+                                    @error('good_name')
                                     <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="">Kategori barang</label>
                                     <select name="category" class="form-control @error('category') is-invalid @enderror">
                                         @foreach($categories    as $category)
-                                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                            <option @if(old('category') === $category->name) selected @endif value="{{ $category->name }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Tempat penemuan</label>
-                                    <input name="place_of_found" type="text" class="form-control @error('place_of_found') is-invalid @enderror">
+                                    <input value="{{ old('place_of_found') }}" name="place_of_found" type="text" class="form-control @error('place_of_found') is-invalid @enderror">
                                     @error('place_of_found')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="">Tanggal penemuan</label>
-                                    <input id="date_of_found_input" name="date_of_found" type="text" class="form-control @error('date_of_found') is-invalid @enderror">
+                                    <input value="{{ old('date_of_found') }}" id="date_of_found_input" name="date_of_found" type="text" class="form-control @error('date_of_found') is-invalid @enderror">
                                     @error('date_of_found')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="">Nomor HP</label>
-                                    <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" name="mobile_number ">
+                                    <input value="{{ old('mobile_number') }}" type="text" class="form-control @error('mobile_number') is-invalid @enderror" name="mobile_number">
                                     @error('mobile_number')
                                     <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -68,9 +68,9 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-6">
                                 <div class="form-group">
-                                    <button class="btn btn-success">Pasang</button>
+                                    <button class="btn btn-success btn-block">Pasang</button>
                                 </div>
                             </div>
                         </div>
@@ -84,13 +84,11 @@
     <div class="modal fade" id="next-step-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
                     <div class="row">
+                        <div class="col-md-12 text-center">
+                            <span class="fa fa-question fa-6x"></span>
+                        </div>
                         <div class="col-md-12 text-center">
                             <h3>Data berhasil ditambahkan</h3>
                             <p>Tentukan langkah selanjutnya</p>

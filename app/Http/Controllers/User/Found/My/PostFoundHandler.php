@@ -40,13 +40,33 @@ class PostFoundHandler extends Controller
 
     public function __invoke(Request $request)
     {
+        $request->validate([
+            'good_name' => [
+                'required',
+                'max:191'
+            ],
+            'category' => [
+                'required'
+            ],
+            'place_of_found' => [
+                'required',
+                'max:191'
+            ],
+            'date_of_found' => [
+                'required',
+                'date'
+            ],
+            'mobile_number' => [
+                'required'
+            ]
+        ]);
+
         try {
             $user = $request->user();
 
             $lostGood = $this->lostGoodService->createFound([
                 'user_id' => $user->id,
-                'name' => $request->input('name'),
-                'information' => $request->input('information'),
+                'name' => $request->input('good_name'),
                 'type' => LostGoodTypeEnum::FOUND,
                 'place_details' => $request->input('place_of_found'),
                 'date' => $request->input('date_of_found'),

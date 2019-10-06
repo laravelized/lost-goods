@@ -14,7 +14,7 @@
         </div>
         @endif
 
-        <div class="col-md-12 mt-2">
+        <div class="col-md-12 mt-3">
             <div class="row">
                 @foreach($lostGoods as $lostGood)
                 <div class="col-md-12 mt-3">
@@ -46,16 +46,6 @@
                                         <tr>
                                             <th>Tempat penemuan</th>
                                             <td>{{ $lostGood->place_details }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Detail informasi</th>
-                                            <td>{{ $lostGood->information }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nomor HP</th>
-                                            <td>
-                                                <button class="btn btn-success btn-sm"><strong>{{ $lostGood->mobile_number }}</strong></button>
-                                            </td>
                                         </tr>
                                     </table>
                                 </div>

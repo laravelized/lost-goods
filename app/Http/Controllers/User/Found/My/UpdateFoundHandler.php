@@ -4,8 +4,10 @@
 namespace App\Http\Controllers\User\Found\My;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Category\Models\Category;
 use App\Modules\LostGoods\Models\LostGood;
 use App\Modules\LostGoods\Models\LostGoodImage;
+use App\Services\Session\NotificationKeys;
 use App\Services\StringService\StringServiceInterface;
 use App\Services\Uploader\UploaderInterface;
 use Illuminate\Foundation\Application;
@@ -30,6 +32,27 @@ class UpdateFoundHandler extends Controller
 
     public function __invoke(Request $request, $lostGoodId)
     {
+        $request->validate([
+            'good_name' => [
+                'required',
+                'max:191'
+            ],
+            'category' => [
+                'required'
+            ],
+            'place_of_found' => [
+                'required',
+                'max:191'
+            ],
+            'date_of_found' => [
+                'required',
+                'date'
+            ],
+            'mobile_number' => [
+                'required'
+            ]
+        ]);
+
         try {
             $lostGood = LostGood
                 ::with(['lostGoodImages'])
@@ -37,12 +60,14 @@ class UpdateFoundHandler extends Controller
                 ->first();
 
             $lostGood->update([
-                'name' => $request->input('name'),
+                'name' => $request->input('good_name'),
                 'place_details' => $request->input('place_of_found'),
                 'date' => $request->input('date_of_found'),
-                'information' => $request->input('information'),
                 'mobile_number' => $request->input('mobile_number')
             ]);
+
+            $category = Category::where('name', $request->input('category'))->first();
+            $lostGood->categories()->sync([$category->id]);
 
             if ($request->hasFile('image')) {
                 $lostGoodImages = $lostGood->lostGoodImages;
@@ -84,10 +109,12 @@ class UpdateFoundHandler extends Controller
                 ]);
             }
 
-            return back();
+            return back()
+                ->with(NotificationKeys::SUCCESS, 'Pengumuman barang temuan berhasil diubah');
 
         } catch (\Exception $exception) {
-            throw $exception;
+            return back()
+                ->with(NotificationKeys::EXCEPTION, $exception->getMessage());
         }
 
     }

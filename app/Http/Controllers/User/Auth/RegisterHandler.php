@@ -11,6 +11,7 @@ namespace App\Http\Controllers\User\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Modules\User\Actions\RegisterUserAction;
+use App\Services\Session\NotificationKeys;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
@@ -67,12 +68,12 @@ class RegisterHandler extends Controller
 
             return redirect()
                 ->route('user.login.form')
-                ->with('success', 'You are registered successfully, you can login now');
+                ->with(NotificationKeys::SUCCESS, 'Anda berhasil terdaftar, silahkan login');
 
         } catch (\Exception $exception) {
 
             return back()
-                ->with('exception', $exception->getMessage());
+                ->with(NotificationKeys::EXCEPTION, $exception->getMessage());
         }
     }
 }

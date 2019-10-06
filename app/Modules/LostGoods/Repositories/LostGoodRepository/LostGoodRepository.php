@@ -27,7 +27,7 @@ class LostGoodRepository implements LostGoodRepositoryInterface
         return $this->model->create([
             'name' => $params['name'],
             'user_id' => $params['user_id'],
-            'information' => $params['information'],
+            'information' => $params['information'] ?? null,
             'type' => $params['type'],
             'place_details' => $params['place_details'],
             'date' => $params['date'],
@@ -40,7 +40,7 @@ class LostGoodRepository implements LostGoodRepositoryInterface
         return $this->model->create([
             'name' => $params['name'],
             'user_id' => $params['user_id'],
-            'information' => $params['information'],
+            'information' => $params['information'] ?? null,
             'type' => $params['type'],
             'place_details' => $params['place_details'],
             'date' => $params['date'],
