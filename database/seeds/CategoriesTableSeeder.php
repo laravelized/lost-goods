@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use \App\Modules\Category\Categories;
+use \App\Modules\Category\Models\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
@@ -11,31 +13,20 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $categories = \App\Modules\Category\Categories::LIST;
-        foreach ($categories as $parentCategoryName => $childCategoriesName) {
-            $parentCategory = \App\Modules\Category\Models\Category
-                ::where('name', $parentCategoryName)
-                ->first();
-            if (is_null($parentCategory)) {
-                $parentCategory = \App\Modules\Category\Models\Category::create([
-                    'name' => $parentCategoryName
-                ]);
-            }
+        $categoryData = [
+            Categories::OTHERS => 'fa-bars',
+            Categories::DOCUMENT => 'fa-book',
+            Categories::ACCESORIES => 'fa-clock',
+            Categories::ELECTRONIC => 'fa-mobile-alt',
+            Categories::VEHICLE => 'fa-car'
+        ];
 
-            foreach ($childCategoriesName  as $childCategoryName) {
-                $childCategory = \App\Modules\Category\Models\Category
-                    ::where('name', $childCategoryName)
-                    ->first();
-                if (!is_null($childCategory)) {
-                    $childCategory->update([
-                        'parent_category_id' => $parentCategory->id
-                    ]);
-                } else {
-                    \App\Modules\Category\Models\Category::create([
-                        'name' => $childCategoryName,
-                        'parent_category_id' => $parentCategory->id
-                    ]);
-                }
+        foreach ($categoryData as $categoryName => $categoryIcon) {
+            if (!Category::where('name', $categoryName)->exists()) {
+                Category::create([
+                    'name' => $categoryName,
+                    'font_awesome_icon_class_name' => $categoryIcon
+                ]);
             }
         }
     }

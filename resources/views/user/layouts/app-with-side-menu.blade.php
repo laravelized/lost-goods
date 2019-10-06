@@ -22,10 +22,11 @@
 
     @include('user.components.navbar')
 
-    @include('user.components.alerts')
-
-    <div class="container-fluid h-100" style="min-height: 100vh;">
+    <div class="container h-100" style="min-height: 100vh; margin-top: 100px;">
         <div class="row h-100">
+            <div class="col-md-12">
+                @include('user.components.alerts')
+            </div>
             <div class="col-md-3">
                 @include('user.components.sidemenu')
             </div>

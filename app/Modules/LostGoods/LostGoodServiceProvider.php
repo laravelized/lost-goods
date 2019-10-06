@@ -28,14 +28,42 @@ class LostGoodServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Gate::define(Permissions::CREATE_FOUND, LostGoodPolicy::class . '@create');
-        Gate::define(Permissions::UPDATE_FOUND, LostGoodPolicy::class . '@update');
-        Gate::define(Permissions::DELETE_FOUND, LostGoodPolicy::class . '@delete');
-        Gate::define(Permissions::CLAIM_FOUND, LostGoodPolicy::class . '@claim');
-
-        Gate::define(Permissions::CREATE_QUESTION, QuestionPolicy::class . '@create');
-        Gate::define(Permissions::UPDATE_QUESTION, QuestionPolicy::class . '@update');
-        Gate::define(Permissions::DELETE_QUESTION, QuestionPolicy::class . '@delete');
+        Gate::define(
+            Permissions::CREATE_FOUND,
+            LostGoodPolicy::class . '@create'
+        );
+        Gate::define(
+            Permissions::UPDATE_FOUND,
+            LostGoodPolicy::class . '@update'
+        );
+        Gate::define(
+            Permissions::DELETE_FOUND,
+            LostGoodPolicy::class . '@delete'
+        );
+        Gate::define(
+            Permissions::CLAIM_FOUND,
+            LostGoodPolicy::class . '@claim'
+        );
+        Gate::define(
+            Permissions::VIEW_FOUND_CLAIMS_LIST,
+            LostGoodPolicy::class . '@viewFoundClaimsList'
+        );
+        Gate::define(
+            Permissions::VIEW_FOUND_QUESTIONS_LIST,
+            LostGoodPolicy::class . '@viewFoundQuestionsList'
+        );
+        Gate::define(
+            Permissions::CREATE_QUESTION,
+            QuestionPolicy::class . '@create'
+        );
+        Gate::define(
+            Permissions::UPDATE_QUESTION,
+            QuestionPolicy::class . '@update'
+        );
+        Gate::define(
+            Permissions::DELETE_QUESTION,
+            QuestionPolicy::class . '@delete'
+        );
     }
 
     public function register()

@@ -1,18 +1,35 @@
-@extends('user.layouts.app-with-side-menu')
+@extends('user.layouts.app')
 
 @section('content')
     <div class="row">
-        <div class="col-md-12" style="margin-top: 20px;">
-            <form action="{{ route('user.founds.questions.create', ['lostGoodId' => $lostGood->id]) }}" method="POST">
-                @csrf
-                <div class="form-group">
-                    <label for="">Question</label>
-                    <textarea name="question"  cols="30" rows="10" class="form-control"></textarea>
+        <div class="col-md-12">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>Isi pertanyaan untuk barang tersebut</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ route('user.founds.questions.create', ['lostGoodId' => $lostGood->id]) }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="">Pertanyaan</label>
+                                    <textarea name="question"  cols="30" rows="5" class="form-control @error('question') is-invalid @enderror">{{ old('question') }}</textarea>
+                                    @error('question')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-success btn-block">Simpan</button>
+                                    <a href="{{ route('user.founds.my.list') }}" class="btn btn-warning btn-block">Kembali</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-success">Save</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 @endsection

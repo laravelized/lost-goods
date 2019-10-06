@@ -24,6 +24,8 @@ class CreateLostGoodsTable extends Migration
             $table->text('place_details');
             $table->dateTime('date');
             $table->string('mobile_number');
+            $table->boolean('is_resolved')
+                ->default(false);
             $table->timestamps();
         });
 

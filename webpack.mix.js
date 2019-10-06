@@ -23,15 +23,17 @@ mix.styles([
     'resources/vendor/sb-admin-2/css/sb-admin-2.min.css'
 ], 'public/css/admin.all.css');
 
-mix.styles([
-    'node_modules/bootstrap/dist/css/bootstrap.min.css',
-    'resources/vendor/startbootstrap-heroic/css/heroic-features.css'
-], 'public/css/user.all.css');
+// mix.styles([
+//     'node_modules/bootstrap/dist/css/bootstrap.min.css',
+//     'resources/vendor/startbootstrap-heroic/css/heroic-features.css'
+// ], 'public/css/user.all.css');
 
-mix.scripts([
-    'node_modules/jquery/dist/jquery.js',
-    'node_modules/bootstrap/dist/js/bootstrap.min.js',
-], 'public/js/user.all.js');
+mix.js('resources/js/app.js', 'public/js/user.all.js')
+    .sass('resources/sass/app.scss', 'public/css/user.all.css');
+// mix.js([
+//     'node_modules/jquery/dist/jquery.js',
+//     'node_modules/bootstrap/dist/js/bootstrap.min.js',
+// ], 'public/js/user.all.js');
 
 mix.copyDirectory('node_modules/@fortawesome/fontawesome-free/sprites', 'public/sprites');
 mix.copyDirectory('node_modules/@fortawesome/fontawesome-free/svgs', 'public/svgs');

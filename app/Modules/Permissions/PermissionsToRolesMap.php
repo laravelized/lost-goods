@@ -32,11 +32,13 @@ class PermissionsToRolesMap
             Permissions::UPDATE_FOUND,
             Permissions::DELETE_FOUND,
             Permissions::VIEW_FOUND_QUESTIONS_LIST,
+
+            Permissions::VIEW_FOUND_CLAIMS_LIST,
             Permissions::CLAIM_FOUND,
 
             Permissions::CREATE_QUESTION,
             Permissions::UPDATE_QUESTION,
-            Permissions::DELETE_QUESTION
+            Permissions::DELETE_QUESTION,
         ]
     ];
 }

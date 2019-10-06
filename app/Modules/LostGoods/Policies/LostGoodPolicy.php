@@ -54,4 +54,11 @@ class LostGoodPolicy
         return in_array(Permissions::VIEW_FOUND_QUESTIONS_LIST, $arrayOfPermissions->toArray()) &&
             $this->isCreatorSame($user, $lostGood);
     }
+
+    public function viewFoundClaimsList(User $user, LostGood $lostGood)
+    {
+        $arrayOfPermissions = $this->permissionService->getPermissionsNameByUser($user);
+        return in_array(Permissions::VIEW_FOUND_CLAIMS_LIST, $arrayOfPermissions->toArray()) &&
+            $this->isCreatorSame($user, $lostGood);
+    }
 }

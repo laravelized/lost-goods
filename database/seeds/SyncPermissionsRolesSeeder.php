@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DevelopmentEnvironmentSeeder extends Seeder
+class SyncPermissionsRolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,5 @@ class DevelopmentEnvironmentSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
         $this->call(AttachingPermissionsToRolesSeeder::class);
-        $this->call(AdminAccountSeeder::class);
-        $this->call(CategoriesTableSeeder::class);
-        $this->call(UserAccountSeeder::class);
-        $this->call(CategoriesTableSeeder::class);
     }
 }

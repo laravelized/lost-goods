@@ -18,7 +18,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Notifications</a>
+                       aria-expanded="false">Notifications <span class="badge badge-danger">4</span>
+                    </a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
                         <a class="dropdown-item" href="#">Notification 1</a>
                     </div>
@@ -27,7 +28,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">Others contents</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Losts</a>
+                        <a class="dropdown-item" href="{{ route('user.lost.others.list') }}">Losts</a>
                         <a class="dropdown-item" href="{{ route('user.founds.others.list') }}">Founds</a>
                     </div>
                 </li>
@@ -35,7 +36,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">Your contents</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Losts</a>
+                        <a class="dropdown-item" href="{{ route('user.lost.my.list') }}">Losts</a>
                         <a class="dropdown-item" href="{{ route('user.founds.my.list') }}">Founds</a>
                     </div>
                 </li>

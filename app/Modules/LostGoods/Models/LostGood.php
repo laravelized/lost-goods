@@ -9,6 +9,7 @@
 namespace App\Modules\LostGoods\Models;
 
 use App\Modules\Category\Models\Category;
+use App\Modules\User\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class LostGood extends Model
@@ -21,6 +22,11 @@ class LostGood extends Model
         'date' => 'date'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function lostGoodImages()
     {
         return $this->hasMany(LostGoodImage::class);
@@ -28,7 +34,7 @@ class LostGood extends Model
 
     public function categories()
     {
-        return $this->hasMany(Category::class);
+        return $this->belongsToMany(Category::class);
     }
 
     public function questions()

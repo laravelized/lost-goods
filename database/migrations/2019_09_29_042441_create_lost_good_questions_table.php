@@ -20,7 +20,7 @@ class CreateLostGoodQuestionsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('lost_goods_questions', function (Blueprint $table) {
+        Schema::table('lost_good_questions', function (Blueprint $table) {
             $table->foreign('lost_good_id')
                 ->references('id')
                 ->on('lost_goods')

@@ -9,9 +9,11 @@
 namespace App\Http\Controllers\User\Found\My;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Category\Models\Category;
 use App\Modules\LostGoods\Enum\LostGoodTypeEnum;
 use App\Modules\LostGoods\Services\LostGoodImageService\LostGoodImageServiceInterface;
 use App\Modules\LostGoods\Services\LostGoodService\LostGoodServiceInterface;
+use App\Services\Session\NotificationKeys;
 use App\Services\StringService\StringServiceInterface;
 use App\Services\Uploader\UploaderInterface;
 use Illuminate\Http\Request;
@@ -38,12 +40,6 @@ class PostFoundHandler extends Controller
 
     public function __invoke(Request $request)
     {
-//        $request->validate([
-//            'name' => [
-//                'required'
-//            ]
-//        ]);
-
         try {
             $user = $request->user();
 
@@ -56,6 +52,10 @@ class PostFoundHandler extends Controller
                 'date' => $request->input('date_of_found'),
                 'mobile_number' => $request->input('mobile_number')
             ]);
+
+            $categoryName = $request->input('category');
+            $category = Category::where('name', $categoryName)->first();
+            $lostGood->categories()->sync([$category->id]);
 
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
@@ -88,13 +88,14 @@ class PostFoundHandler extends Controller
                 ]);
             }
 
+            $request->session()->put('just_created_lost_good_id', $lostGood->id);
             return back()
-                ->with('success', 'Found has been successfully created');
+                ->with(NotificationKeys::SUCCESS, 'Pengumuman penemuan barang telah terbuat');
 
         } catch (\Exception $exception) {
 
             return back()
-                ->with('exception', $exception->getMessage());
+                ->with(NotificationKeys::EXCEPTION, $exception->getMessage());
         }
     }
 }

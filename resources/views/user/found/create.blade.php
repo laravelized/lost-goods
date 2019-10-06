@@ -1,12 +1,12 @@
 @extends('user.layouts.app')
 
 @section('content')
-    <div class="container h-100" style="margin-top: 50px;">
+    <div class="container h-100 mt-5">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Post found</h3>
+                        <h3>Pasang barang temuan</h3>
                     </div>
                     <div class="card-body">
                         <form enctype="multipart/form-data" action="{{ route('user.founds.my.post') }}" method="POST">
@@ -14,11 +14,11 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="">Name</label>
+                                        <label for="">Judul barang</label>
                                         <input name="name" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Category</label>
+                                        <label for="">Kategori barang</label>
                                         <select name="category" class="form-control">
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->name }}">{{ $category->name }}</option>
@@ -26,31 +26,31 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Place of found</label>
+                                        <label for="">Tempat penemuan</label>
                                         <input name="place_of_found" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="">Date of found</label>
+                                        <label for="">Tanggal penemuan</label>
                                         <input id="date_of_found_input" name="date_of_found" type="text" class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Image</label>
+                                        <label for="">Gambar</label>
                                         <input name="image" type="file" class="form-control-file">
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Information</label>
+                                        <label for="">Detail informasi</label>
                                         <textarea name="information"  cols="30" rows="10" class="form-control"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="">Mobile number</label>
+                                        <label for="">Nomor HP</label>
                                         <input type="text" class="form-control" name="mobile_number">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <button class="btn btn-success">Save</button>
+                                        <button class="btn btn-success">Pasang</button>
                                     </div>
                                 </div>
                             </div>
@@ -60,6 +60,32 @@
             </div>
         </div>
     </div>
+
+    @if(session(\App\Services\Session\NotificationKeys::SUCCESS))
+    <div class="modal fade" id="next-step-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h3>Data berhasil ditambahkan</h3>
+                            <p>Tentukan langkah selanjutnya</p>
+                        </div>
+                        <div class="col-md-12">
+                            <a href="{{ route('user.founds.questions.create.form', ['lostGoodId' => session('just_created_lost_good_id')]) }}" class="btn btn-success btn-block">Tambah pertanyaan</a>
+                            <a href="{{ route('user.founds.my.list') }}" class="btn btn-primary btn-block">Kembali ke barang temuan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 @endsection
 
 @push('after-style')
@@ -75,6 +101,12 @@
                 format: 'yyyy-mm-dd',
                 autoclose: true
             });
+
+            @if(session(\App\Services\Session\NotificationKeys::SUCCESS))
+            $('#next-step-modal').modal({
+                backdrop: 'static'
+            })
+            @endif
         });
     </script>
 @endpush

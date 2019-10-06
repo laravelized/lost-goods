@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
                 ->unsigned()
                 ->nullable();
             $table->string('name');
+            $table->string('font_awesome_icon_class_name');
             $table->timestamps();
         });
 

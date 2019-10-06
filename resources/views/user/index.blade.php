@@ -1,67 +1,58 @@
 @extends('user.layouts.app')
 
 @section('content')
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-        <h1 class="display-3">{{ config('app.name') }}</h1>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
-        <a href="#" class="btn btn-primary btn-lg">Call to action!</a>
-    </header>
 
-    <!-- Page Features -->
-    <div class="row text-center">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1><strong>Pencarian barang hilang</strong></h1>
+            <p>Pencarian barang jadi lebih mudah dan aman dengan menggunakan website kami</p>
+            <form
+                @if(request()->query('type', null) === 'lost' || is_null(request()->query('type', null)))
+                action="{{ route('user.lost.others.list') }}"
+                @else
+                action="{{ route('user.founds.others.list') }}"
+                @endif
 
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                </div>
-            </div>
+                method="GET">
+
+                <input type="text" name="keyword" class="form-control" placeholder="Cari barang hilang di sini .....">
+            </form>
         </div>
-
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                </div>
-            </div>
+        <div class="col-md-12 text-center text-center mt-5">
+            <a class="btn @if(request()->query('type') === 'lost' || is_null(request()->query('type', null))) btn-success @else btn-outline-success @endif" href="{{ route('user.index', ['type' => 'lost']) }}">Barang kehilangan</a>
+            <a class="btn @if(request()->query('type') === 'found') btn-success @else btn-outline-success @endif" href="{{ route('user.index', ['type' => 'found']) }}">Barang Temuan</a>
         </div>
+    </div>
 
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                </div>
+    <div class="row text-center mt-5">
+        @if(request()->query('type', null) === 'lost' || is_null(request()->query('type', null)))
+        @foreach ($categories as $category)
+            <div class="col-lg-3 col-md-3 col-sm-12 col-12 mb-4">
+                <a href="{{ route('user.lost.others.list', array_merge(['category' => $category->name], request()->query())) }}">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fa {{ $category->font_awesome_icon_class_name }} fa-5x"></i>
+                            <h3 class="card-title mt-2">{{ $category->name }}</h3>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
+        @endforeach
+        @endif
 
-        <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">Card title</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo magni sapiente, tempore debitis beatae culpa natus architecto.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                </div>
+        @if(request()->query('type') === 'found')
+        @foreach ($categories as $category)
+            <div class="col-lg-3 col-md-3 col-sm-12 col-12 mb-4">
+                <a href="{{ route('user.founds.others.list', array_merge(['category' => $category->name], request()->query())) }}">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fa {{ $category->font_awesome_icon_class_name }} fa-5x"></i>
+                            <h3 class="card-title mt-2">{{ $category->name }}</h3>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
-
+        @endforeach
+        @endif
     </div>
 @endsection

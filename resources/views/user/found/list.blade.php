@@ -7,15 +7,17 @@
 @section('content')
     <div class="row">
         @if($showCreateFoundButton)
-        <div class="col-md-12" style="margin-top: 50px;">
-            <a href="{{ route('user.founds.my.post.form') }}" class="btn btn-success">Post your found</a>
+        <div class="col-md-12">
+            <a href="{{ route('user.founds.my.post.form') }}" class="btn btn-success">
+                Buat pengumuman penemuan barang
+            </a>
         </div>
         @endif
 
-        <div class="col-md-12" style="margin-top: 50px;">
+        <div class="col-md-12 mt-2">
             <div class="row">
                 @foreach($lostGoods as $lostGood)
-                <div class="col-md-12">
+                <div class="col-md-12 mt-3">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
@@ -26,28 +28,31 @@
                                     @endif
                                 </div>
                                 <div class="col-md-7">
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered table-sm">
                                         <tr>
-                                            <th colspan="2">{{ $lostGood->name }}</th>
+                                            <th>Nama barang</th>
+                                            <td>
+                                                {{ $lostGood->name }}
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <th>Category</th>
-                                            <td>Accessory</td>
+                                            <th>Kategori</th>
+                                            <td>{{  $lostGood->categories[0]->name }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Lost date</th>
-                                            <td>{{ $lostGood->date }}</td>
+                                            <th>Tanggal penemuan</th>
+                                            <td>{{ $lostGood->date->format('d-m-Y') }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Lost place</th>
+                                            <th>Tempat penemuan</th>
                                             <td>{{ $lostGood->place_details }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Information details</th>
+                                            <th>Detail informasi</th>
                                             <td>{{ $lostGood->information }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Contact number</th>
+                                            <th>Nomor HP</th>
                                             <td>
                                                 <button class="btn btn-success btn-sm"><strong>{{ $lostGood->mobile_number }}</strong></button>
                                             </td>
@@ -55,17 +60,28 @@
                                     </table>
                                 </div>
                                 <div class="col-md-2">
-                                    @can(\App\Modules\Permissions\Permissions::DELETE_FOUND, $lostGood)
-                                    <button data-action-url="{{ route('user.founds.my.delete', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-danger btn-block btn-sm show-delete-found-confirm-modal-button">Delete</button>
-                                    @endcan
-                                    @can(\App\Modules\Permissions\Permissions::UPDATE_FOUND, $lostGood)
-                                    <a href="{{ route('user.founds.my.update.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-primary btn-block btn-sm">Update</a>
-                                    @endcan
-                                    @can(\App\Modules\Permissions\Permissions::VIEW_FOUND_QUESTIONS_LIST, $lostGood)
-                                    <a href="{{ route('user.founds.questions.list', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-success btn-block btn-sm">Questions list</a>
-                                    @endcan
+                                    @if(!$lostGood->is_resolved)
+                                        @can(\App\Modules\Permissions\Permissions::DELETE_FOUND, $lostGood)
+                                        <button data-action-url="{{ route('user.founds.my.delete', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-danger btn-block btn-sm show-delete-found-confirm-modal-button">Hapus</button>
+                                        @endcan
+                                        @can(\App\Modules\Permissions\Permissions::UPDATE_FOUND, $lostGood)
+                                        <a href="{{ route('user.founds.my.update.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-primary btn-block btn-sm">Ubah</a>
+                                        @endcan
+                                        @can(\App\Modules\Permissions\Permissions::VIEW_FOUND_QUESTIONS_LIST, $lostGood)
+                                        @if(!$lostGood->questions->count())
+                                            <a href="{{ route('user.founds.questions.create.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-success btn-block btn-sm">Buat pertanyaan</a>
+                                        @else
+                                            <a href="{{ route('user.question.update.form', ['questionId' => $lostGood->questions[0]->id]) }}" class="btn btn-success btn-block btn-sm">Ubah pertanyaan</a>
+                                        @endif
+                                        @endcan
+                                    @endif
+
                                     @can(\App\Modules\Permissions\Permissions::CLAIM_FOUND, $lostGood)
-                                    <a href="" class="btn btn-warning btn-block btn-sm">Claim</a>
+                                    <a href="{{ route('user.founds.others.claim.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-warning btn-block btn-sm">Klaim</a>
+                                    @endcan
+
+                                    @can(\App\Modules\Permissions\Permissions::VIEW_FOUND_CLAIMS_LIST, $lostGood)
+                                    <a href="{{ route('user.founds.my.claims.list', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-warning btn-block btn-sm">Laporan</a>
                                     @endcan
                                 </div>
                             </div>
@@ -81,17 +97,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Delete found confirmation</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi hapus</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Delete this found ?
+                    Hapus pengumuman penemuan barang ini ?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="delete-found-button" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button id="delete-found-button" type="button" class="btn btn-danger">Hapus</button>
                 </div>
             </div>
         </div>

@@ -15,8 +15,12 @@ class CreateLostGoodClaimsTable extends Migration
     {
         Schema::create('lost_good_claims', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('lost_good_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('lost_good_id')
+                ->unsigned();
+            $table->bigInteger('user_id')
+                ->unsigned();
+            $table->tinyInteger('status')
+                ->default(\App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::CREATED);
             $table->timestamps();
         });
 
