@@ -1,61 +1,80 @@
 @extends('user.layouts.app')
 
 @section('content')
-    <div class="container h-100 mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3>Pasang barang temuan</h3>
-                    </div>
-                    <div class="card-body">
-                        <form enctype="multipart/form-data" action="{{ route('user.founds.my.post') }}" method="POST">
-                            @csrf
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="">Judul barang</label>
-                                        <input name="name" type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Kategori barang</label>
-                                        <select name="category" class="form-control">
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->name }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Tempat penemuan</label>
-                                        <input name="place_of_found" type="text" class="form-control">
-                                    </div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Pasang barang temuan</h3>
+                </div>
+                <div class="card-body">
+                    <form enctype="multipart/form-data" action="{{ route('user.founds.my.post') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Judul barang</label>
+                                    <input name="name" type="text" class="form-control @error('name') is-invalid @enderror">
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="">Tanggal penemuan</label>
-                                        <input id="date_of_found_input" name="date_of_found" type="text" class="form-control">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Gambar</label>
-                                        <input name="image" type="file" class="form-control-file">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Detail informasi</label>
-                                        <textarea name="information"  cols="30" rows="10" class="form-control"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Nomor HP</label>
-                                        <input type="text" class="form-control" name="mobile_number">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="">Kategori barang</label>
+                                    <select name="category" class="form-control @error('category') is-invalid @enderror">
+                                        @foreach($categories    as $category)
+                                            <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('category')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <button class="btn btn-success">Pasang</button>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="">Tempat penemuan</label>
+                                    <input name="place_of_found" type="text" class="form-control @error('place_of_found') is-invalid @enderror">
+                                    @error('place_of_found')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Tanggal penemuan</label>
+                                    <input id="date_of_found_input" name="date_of_found" type="text" class="form-control @error('date_of_found') is-invalid @enderror">
+                                    @error('date_of_found')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Gambar</label>
+                                    <input name="image" type="file" class="form-control-file">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Nomor HP</label>
+                                    <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" name="mobile_number ">
+                                    @error('mobile_number')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <button class="btn btn-success">Pasang</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

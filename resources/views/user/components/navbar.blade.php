@@ -16,28 +16,24 @@
             </ul>
             @else
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Notifications <span class="badge badge-danger">4</span>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Notifikasi <span class="badge badge-danger">4</span>
                     </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                       aria-expanded="false">Daftar unggahan pengguna</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Notification 1</a>
+                        <a class="dropdown-item" href="{{ route('user.lost.others.list') }}">Pengumuman kehilangan</a>
+                        <a class="dropdown-item" href="{{ route('user.founds.others.list') }}">Pengumuman penemuan barang</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Others contents</a>
+                       aria-expanded="false">Pasang pengumuman</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="{{ route('user.lost.others.list') }}">Losts</a>
-                        <a class="dropdown-item" href="{{ route('user.founds.others.list') }}">Founds</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Your contents</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="{{ route('user.lost.my.list') }}">Losts</a>
-                        <a class="dropdown-item" href="{{ route('user.founds.my.list') }}">Founds</a>
+                        <a class="dropdown-item" href="{{ route('user.lost.my.list') }}">Kehilangan</a>
+                        <a class="dropdown-item" href="{{ route('user.founds.my.list') }}">Penemuan barang</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

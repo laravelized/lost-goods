@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Modules\User\Actions\RegisterUserAction;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class RegisterHandler extends Controller
 {
@@ -26,6 +27,34 @@ class RegisterHandler extends Controller
 
     public function __invoke(RegisterRequest $request)
     {
+        $request->validate([
+            'username' => [
+                'required',
+                'max:191',
+                'unique:users,username'
+            ],
+            'password' => [
+                'required',
+                'confirmed'
+            ],
+            'full_name' => [
+                'required',
+                'max:191',
+            ],
+            'address' => [
+                'required',
+                'max:191'
+            ],
+            'gender' => [
+                'required',
+                Rule::in([0,1])
+            ],
+            'mobile_number' => [
+                'required',
+                'unique:users,mobile_number'
+            ]
+        ]);
+
         try {
             $this->registerUserAction->act([
                 'username' => $request->input('username'),

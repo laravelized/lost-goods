@@ -19,7 +19,7 @@ class CreateLostGoodsTable extends Migration
                 ->unsigned()
                 ->nullable();
             $table->string('name');
-            $table->text('information');
+            $table->text('information')->nullable();
             $table->tinyInteger('type');
             $table->text('place_details');
             $table->dateTime('date');

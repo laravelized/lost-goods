@@ -13,6 +13,7 @@ use App\Http\Requests\LoginRequest;
 use App\Modules\User\Exceptions\PasswordDoesNotMatchException;
 use App\Modules\User\Exceptions\UserDoesNotExistException;
 use App\Modules\User\Services\UserService\UserServiceInterface;
+use App\Services\Session\NotificationKeys;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,15 @@ class LoginHandler extends Controller
 
     public function __invoke(LoginRequest $request)
     {
+        $request->validate([
+            'username' => [
+                'required'
+            ],
+            'password' => [
+                'required'
+            ]
+        ]);
+
         try {
             $user = $this->userService->getByUsername($request->input('username'));
             if (is_null($user)) {
@@ -42,12 +52,12 @@ class LoginHandler extends Controller
 
             return redirect()
                 ->route('user.index')
-                ->with('success', 'You has logged in successfully');
+                ->with(NotificationKeys::SUCCESS, 'Anda berhasil login');
 
         } catch (\Exception $exception) {
 
             return back()
-                ->with('exception', $exception->getMessage());
+                ->with(NotificationKeys::EXCEPTION, $exception->getMessage());
         }
     }
 }

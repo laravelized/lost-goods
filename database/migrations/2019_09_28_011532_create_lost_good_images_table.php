@@ -22,6 +22,14 @@ class CreateLostGoodImagesTable extends Migration
             $table->string('uploader_class');
             $table->timestamps();
         });
+
+        Schema::table('lost_good_images', function (Blueprint $table) {
+            $table->foreign('lost_good_id')
+                ->references('id')
+                ->on('lost_goods')
+                ->onDelete('CASCADE')
+                ->onUpdate('CASCADE');
+        });
     }
 
     /**

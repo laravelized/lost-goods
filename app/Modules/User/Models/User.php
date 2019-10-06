@@ -9,6 +9,7 @@
 namespace App\Modules\User\Models;
 
 use App\Modules\LostGoods\Models\Claim;
+use App\Modules\Notification\Models\Notification;
 use App\Modules\Permissions\Models\Role;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -50,5 +51,10 @@ class User extends Authenticatable
     public function claims()
     {
         return $this->hasMany(Claim::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 }
