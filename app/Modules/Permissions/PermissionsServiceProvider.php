@@ -58,7 +58,7 @@ class PermissionsServiceProvider extends ServiceProvider
         $this->app->singleton(PermissionService::class, function (Application $application) {
             return new Services\PermissionService\PermissionService(
                 $application->make(PermissionRepositoryInterface::class),
-                $application->make(RoleRepositoryInterface::class),
+                $application->make(RoleRepositoryInterface::class)
             );
         });
     }

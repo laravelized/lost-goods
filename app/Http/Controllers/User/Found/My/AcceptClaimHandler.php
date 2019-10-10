@@ -12,8 +12,9 @@ class AcceptClaimHandler extends Controller
 {
     public function __invoke(Request $request, $claimId)
     {
+        $claim = Claim::where('id', $claimId)->firstOrFail();
+
         try {
-            $claim = Claim::where('id', $claimId)->first();
             $claim->update([
                 'status' => LostGoodClaimStatusEnum::ACCEPTED
             ]);

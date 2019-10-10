@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\ViewComposers\NavbarViewComposer;
 use App\ViewComposers\SidemenuViewComposer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -25,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer('user.components.sidemenu', SidemenuViewComposer::class);
+        View::composer(
+            'user.components.sidemenu',
+            SidemenuViewComposer::class
+        );
+
+        View::composer(
+            'user.components.navbar',
+            NavbarViewComposer::class
+        );
     }
 }

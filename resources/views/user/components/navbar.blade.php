@@ -17,7 +17,7 @@
             @else
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Notifikasi <span class="badge badge-danger">4</span>
+                    <a class="nav-link" href="{{ route('user.notifications.list') }}">Notifikasi @if($unreadNotificationsCount)<span class="badge badge-danger">{{ $unreadNotificationsCount }}</span>@endif
                     </a>
                 </li>
                 <li class="nav-item dropdown">

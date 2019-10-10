@@ -17,8 +17,8 @@
                                     <input value="{{ old('good_name') }}" name="good_name" type="text" class="form-control @error('good_name') is-invalid @enderror">
                                     @error('good_name')
                                     <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -26,8 +26,8 @@
                                     <textarea name="information_details" id="" cols="30" rows="10" class="form-control @error('information_details') is-invalid @enderror">{{ old('information_details') }}</textarea>
                                     @error('information_details')
                                     <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -39,8 +39,8 @@
                                     </select>
                                     @error('category')
                                     <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
@@ -50,8 +50,8 @@
                                     <input value="{{ old('place_of_lost') }}" name="place_of_lost" type="text" class="form-control @error('place_of_lost') is-invalid @enderror">
                                     @error('place_of_lost')
                                     <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -59,8 +59,8 @@
                                     <input value="{{ old('date_of_lost') }}" id="date-input" name="date_of_lost" type="text" class="form-control @error('date_of_lost') is-invalid @enderror">
                                     @error('date_of_lost')
                                     <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
@@ -72,8 +72,8 @@
                                     <input value="{{ old('mobile_number') }}" type="text" class="form-control @error('mobile_number') is-invalid @enderror" name="mobile_number">
                                     @error('mobile_number')
                                     <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>

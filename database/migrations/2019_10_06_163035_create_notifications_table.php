@@ -16,8 +16,8 @@ class CreateNotificationsTable extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('subject_user_id')->unsigned();
-            $table->bigInteger('lost_good_id')->unsigned();
+            $table->text('message');
+            $table->text('url');
             $table->boolean('was_seen_by_user')->default(false);
             $table->timestamps();
         });
@@ -26,16 +26,6 @@ class CreateNotificationsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
-            $table->foreign('subject_user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('CASCADE')
-                ->onUpdate('CASCADE');
-            $table->foreign('lost_good_id')
-                ->references('id')
-                ->on('lost_goods')
                 ->onDelete('CASCADE')
                 ->onUpdate('CASCADE');
         });

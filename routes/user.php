@@ -72,4 +72,7 @@ Route::group(['namespace' => 'User'], function ($route) {
         ->name('user.founds.others.list');
     $route->get('/lost/others/list', 'Lost\Other\ShowOthersLostListHandler')
         ->name('user.lost.others.list');
+
+    $route->get('/notifications', 'Notification\ShowNotificationsListHandler')
+        ->name('user.notifications.list');
 });

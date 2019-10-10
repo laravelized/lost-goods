@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'category_created' => 'Category has been successfully created'
+    'notifications' => [
+        'category_created' => 'Kategori telah tersimpan'
+    ]
 ];

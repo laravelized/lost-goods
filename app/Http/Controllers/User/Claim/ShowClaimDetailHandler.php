@@ -10,13 +10,9 @@ class ShowClaimDetailHandler extends Controller
 {
     public function __invoke(Request $request, $claimId)
     {
-        try {
-            $claim = Claim::where('id', $claimId)->first();
-            return view('', [
-                'claim' => $claim
-            ]);
-        } catch (\Exception $exception) {
-
-        }
+        $claim = Claim::where('id', $claimId)->firstOrFail();
+        return view('', [
+            'claim' => $claim
+        ]);
     }
 }
