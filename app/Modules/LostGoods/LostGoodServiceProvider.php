@@ -26,6 +26,10 @@ use Illuminate\Support\ServiceProvider;
 
 class LostGoodServiceProvider extends ServiceProvider
 {
+    protected $listen = [
+
+    ];
+
     public function boot()
     {
         Gate::define(
