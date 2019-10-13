@@ -9,6 +9,9 @@
 namespace App\Http\Controllers\User\Found\My;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Category\Models\Category;
+use App\Modules\LostGoods\Enum\LostGoodTypeEnum;
+use App\Modules\LostGoods\Models\LostGood;
 use App\Modules\LostGoods\Services\LostGoodService\LostGoodServiceInterface;
 use Illuminate\Http\Request;
 
@@ -25,7 +28,19 @@ class ShowUserFoundsListHandler extends Controller
     {
         try {
             $user = $request->user();
-            $lostGoods = $this->lostGoodService->getFoundsByUser($user);
+
+            if ($request->query('category')) {
+                $category = Category::where('name', $request->query('category'))->first();
+                $query = $category->lostGoods();
+            } else {
+                $query = LostGood::query();
+            }
+
+            $lostGoods = $query
+                ->where('type', LostGoodTypeEnum::FOUND)
+                ->where('user_id', $user->id)
+                ->get();
+
             return view('user.found.list', [
                 'lostGoods' => $lostGoods,
                 'showCreateFoundButton' => true
