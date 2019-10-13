@@ -181,7 +181,8 @@ return [
         \App\Modules\Permissions\PermissionsServiceProvider::class,
         \App\Modules\User\UserServiceProvider::class,
         \App\Modules\Category\CategoryServiceProvider::class,
-        \App\Modules\LostGoods\LostGoodServiceProvider::class
+        \App\Modules\LostGoods\LostGoodServiceProvider::class,
+        \App\Modules\Notification\NotificationServiceProvider::class
 
 
     ],

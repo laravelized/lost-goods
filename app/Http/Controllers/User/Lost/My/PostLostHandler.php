@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User\Lost\My;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateLostRequest;
 use App\Modules\Category\Exceptions\CategoryDoesNotExistException;
 use App\Modules\Category\Models\Category;
 use App\Modules\LostGoods\Enum\LostGoodTypeEnum;
@@ -27,7 +28,7 @@ class PostLostHandler extends Controller
         $this->stringService = $stringService;
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(CreateLostRequest $request)
     {
         $request->validate([
             'good_name' => [

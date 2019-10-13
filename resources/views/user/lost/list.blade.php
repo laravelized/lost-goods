@@ -58,8 +58,12 @@
                                         </table>
                                     </div>
                                     <div class="col-md-2">
+                                        @can(\App\Modules\Permissions\Permissions::UPDATE_LOST, $lostGood)
                                         <button data-action-url="{{ route('user.lost.my.delete', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-danger btn-block btn-sm show-delete-lost-confirm-modal-button">Hapus</button>
+                                        @endcan
+                                        @can(\App\Modules\Permissions\Permissions::DELETE_LOST, $lostGood)
                                         <a href="{{ route('user.lost.my.update.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-success btn-block btn-sm">Ubah</a>
+                                        @endcan
                                     </div>
                                 </div>
                             </div>

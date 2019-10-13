@@ -32,7 +32,7 @@ class ShowOthersLostListHandler extends Controller
 
             if (Auth::check()) {
                 $user = $request->user();
-                $query =   $query->whereNotIn('user_id', [$user->id]);
+                $query = $query->whereNotIn('user_id', [$user->id]);
             }
 
             $lostGoods = $query

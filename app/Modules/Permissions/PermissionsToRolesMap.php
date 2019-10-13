@@ -33,6 +33,10 @@ class PermissionsToRolesMap
             Permissions::DELETE_FOUND,
             Permissions::VIEW_FOUND_QUESTIONS_LIST,
 
+            Permissions::CREATE_LOST,
+            Permissions::UPDATE_LOST,
+            Permissions::DELETE_LOST,
+
             Permissions::VIEW_FOUND_CLAIMS_LIST,
             Permissions::CLAIM_FOUND,
 

@@ -61,4 +61,24 @@ class LostGoodPolicy
         return in_array(Permissions::VIEW_FOUND_CLAIMS_LIST, $arrayOfPermissions->toArray()) &&
             $this->isCreatorSame($user, $lostGood);
     }
+
+    public function deleteLost(User $user, LostGood $lostGood)
+    {
+        $arrayOfPermissions = $this->permissionService->getPermissionsNameByUser($user);
+        return in_array(Permissions::DELETE_LOST, $arrayOfPermissions->toArray()) &&
+            $this->isCreatorSame($user, $lostGood);
+    }
+
+    public function updateLost(User $user, LostGood $lostGood)
+    {
+        $arrayOfPermissions = $this->permissionService->getPermissionsNameByUser($user);
+        return in_array(Permissions::UPDATE_LOST, $arrayOfPermissions->toArray()) &&
+            $this->isCreatorSame($user, $lostGood);
+    }
+
+    public function createLost(User $user)
+    {
+        $arrayOfPermissions = $this->permissionService->getPermissionsNameByUser($user);
+        return in_array(Permissions::CREATE_LOST, $arrayOfPermissions->toArray());
+    }
 }

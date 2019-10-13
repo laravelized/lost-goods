@@ -36,28 +36,28 @@
                 @if(Route::current()->getName() === 'user.founds.my.list')
                     <li class="list-group-item @if(!request()->query('category')) active @endif"><a href="{{ route('user.founds.my.list', ['keyword' => request()->query('keyword')]) }}">Semua kategori</a></li>
                     @foreach($categories as $category)
-                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.founds.my.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ $category->name }}</a></li>
+                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.founds.my.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ __('categories.' . $category->name)  }}</a></li>
                     @endforeach
                 @endif
 
                 @if(Route::current()->getName() === 'user.founds.others.list')
                         <li class="list-group-item @if(!request()->query('category')) active @endif"><a href="{{ route('user.founds.others.list', ['keyword' => request()->query('keyword')]) }}">Semua kategori</a></li>
                     @foreach($categories as $category)
-                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.founds.others.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ $category->name }}</a></li>
+                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.founds.others.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ __('categories.' . $category->name)  }}</a></li>
                     @endforeach
                 @endif
 
                 @if(Route::current()->getName() === 'user.lost.my.list')
                         <li class="list-group-item @if(!request()->query('category')) active @endif"><a href="{{ route('user.lost.my.list', ['keyword' => request()->query('keyword')]) }}">Semua kategori</a></li>
                     @foreach($categories as $category)
-                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.lost.my.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ $category->name }}</a></li>
+                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.lost.my.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ __('categories.' . $category->name)  }}</a></li>
                     @endforeach
                 @endif
 
                 @if(Route::current()->getName() === 'user.lost.others.list')
                         <li class="list-group-item @if(!request()->query('category')) active @endif"><a href="{{ route('user.lost.others.list', ['keyword' => request()->query('keyword')]) }}">Semua kategori</a></li>
                     @foreach($categories as $category)
-                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.lost.others.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ $category->name }}</a></li>
+                        <li class="list-group-item @if(request()->query('category') === $category->name) active @endif"><a href="{{ route('user.lost.others.list', ['category' => $category->name, 'keyword' => request()->query('keyword')]) }}">{{ __('categories.' . $category->name)  }}</a></li>
                     @endforeach
                 @endif
 

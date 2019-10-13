@@ -27,6 +27,10 @@ class Permissions
     const UPDATE_FOUND = 'update_founds';
     const DELETE_FOUND = 'delete_found';
 
+    const CREATE_LOST = 'create_lost';
+    const UPDATE_LOST = 'update_lost';
+    const DELETE_LOST = 'delete_lost';
+
     const VIEW_FOUND_QUESTIONS_LIST = 'view_found_questions_list';
 
     const CLAIM_FOUND = 'claim_found';
@@ -48,6 +52,10 @@ class Permissions
         self::CREATE_FOUND => 'create found',
         self::UPDATE_FOUND => 'update found',
         self::DELETE_FOUND => 'delete found',
+
+        self::CREATE_LOST => 'create lost',
+        self::UPDATE_LOST => 'update lost',
+        self::DELETE_LOST => 'delete lost',
 
         self::VIEW_FOUND_QUESTIONS_LIST => 'view found questions list',
 

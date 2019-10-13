@@ -66,13 +66,18 @@ Route::group(['namespace' => 'User'], function ($route) {
             ->name('user.lost.my.update');
         $route->post('/lost/my/{lostGoodId}/delete', 'Lost\My\DeleteLostHandler')
             ->name('user.lost.my.delete');
+
+        $route->get('/notifications', 'Notification\ShowNotificationsListHandler')
+            ->name('user.notifications.list');
+        $route->post('/notifications/mark-group-notifications', 'Notification\MarkGroupNotificationsHandler')
+            ->name('user.notifications.mark-group-notifications');
+        $route->post('/notifications/{notificationId}/mark-as-visited', 'Notification\MarkNotificationAsVisitedHandler')
+            ->name('user.notifications.mark-as-visited')
+            ->where('notificationId', '[0-9]+');
     });
 
     $route->get('/founds/others/list', 'Found\Other\ShowOthersFoundListHandler')
         ->name('user.founds.others.list');
     $route->get('/lost/others/list', 'Lost\Other\ShowOthersLostListHandler')
         ->name('user.lost.others.list');
-
-    $route->get('/notifications', 'Notification\ShowNotificationsListHandler')
-        ->name('user.notifications.list');
 });

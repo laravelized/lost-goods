@@ -25,7 +25,7 @@ class ShowLostsListHandler extends Controller
             ]);
 
         } catch (\Exception $exception) {
-            throw $exception;
+            abort(500);
         }
     }
 }

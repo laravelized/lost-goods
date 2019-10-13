@@ -17,7 +17,7 @@
             @else
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.notifications.list') }}">Notifikasi @if($unreadNotificationsCount)<span class="badge badge-danger">{{ $unreadNotificationsCount }}</span>@endif
+                    <a id="notification-link" class="nav-link" href="{{ route('user.notifications.list') }}">Notifikasi @if($unreadNotificationsCount)<span class="badge badge-danger">{{ $unreadNotificationsCount }}</span>@endif
                     </a>
                 </li>
                 <li class="nav-item dropdown">
@@ -85,6 +85,18 @@
             $('#logout-button').on('click', function () {
                 $('#logout-form').submit();
             });
+
+            @if($unreadNotificationsCount)
+            $('#notification-link').on('click', function (event) {
+                var link = this;
+                event.preventDefault();
+                var url = "{{ route('user.notifications.mark-group-notifications') }}";
+                $.post(url);
+                setTimeout(function () {
+                    document.location = $(link).attr('href');
+                }, 100);
+            });
+            @endif
         });
     </script>
 @endpush

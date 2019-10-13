@@ -2,6 +2,7 @@
 
 namespace App\ViewComposers;
 
+use App\Modules\Notification\Enums\NotificationStatuses;
 use App\Modules\Notification\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class NavbarViewComposer
             $user = $this->request->user();
             $unreadNotificationsCount = Notification
                 ::where('user_id', $user->id)
-                ->where('was_seen_by_user', false)
+                ->where('status', NotificationStatuses::CREATED)
                 ->count();
             $view->with('unreadNotificationsCount', $unreadNotificationsCount);
         } else {

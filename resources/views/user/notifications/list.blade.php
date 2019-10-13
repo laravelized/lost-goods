@@ -1,3 +1,7 @@
+@php
+    use \App\Modules\Notification\Enums\NotificationStatuses;
+@endphp
+
 @extends('user.layouts.app')
 
 @section('content')
@@ -18,10 +22,10 @@
                         <tbody>
                             @if($notifications->count())
                             @foreach($notifications as $notification)
-                            <tr>
-                                <td>{{ $otification->message }}</td>
+                            <tr class="@if($notification->status === NotificationStatuses::CREATED || $notification->status === NotificationStatuses::VIEWED_GROUPLY) table-primary @endif">
+                                <td>{{ $notification->message }}</td>
                                 <td>
-                                    <a href="{{ $notification->link }}" class="btn btn-success btn-sm">Tampilkan</a>
+                                    <a data-url="{{ route('user.notifications.mark-as-visited', ['notificationId' => $notification->id]) }}" href="{{ $notification->url }}" class="@if($notification->status === NotificationStatuses::CREATED || $notification->status === NotificationStatuses::VIEWED_GROUPLY) unclicked-notification-link @endif btn btn-success btn-sm">Tampilkan</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -37,3 +41,21 @@
         </div>
     </div>
 @endsection
+
+@push('after-script')
+    <script>
+        $(document).ready(function () {
+            $('.unclicked-notification-link').on('click', function (event) {
+                var link = this;
+
+                event.preventDefault();
+                var url = $(link).data('url');
+                $.post(url);
+
+                setTimeout(function () {
+                    document.location = $(link).attr('href');
+                }, 500);
+            });
+        });
+    </script>
+@endpush

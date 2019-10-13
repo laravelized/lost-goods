@@ -32,7 +32,7 @@
                     <div class="card">
                         <div class="card-body">
                             <i class="fa {{ $category->font_awesome_icon_class_name }} fa-5x"></i>
-                            <h3 class="card-title mt-2">{{ $category->name }}</h3>
+                            <h3 class="card-title mt-2">{{ __('categories.' . $category->name) }}</h3>
                         </div>
                     </div>
                 </a>
@@ -47,7 +47,7 @@
                     <div class="card">
                         <div class="card-body">
                             <i class="fa {{ $category->font_awesome_icon_class_name }} fa-5x"></i>
-                            <h3 class="card-title mt-2">{{ $category->name }}</h3>
+                            <h3 class="card-title mt-2">{{ __('categories.' . $category->name)  }}</h3>
                         </div>
                     </div>
                 </a>

@@ -8,6 +8,10 @@
 
 namespace App\Modules\LostGoods;
 
+use App\Modules\LostGoods\Events\ClaimWasAccepted;
+use App\Modules\LostGoods\Events\ClaimWasRejected;
+use App\Modules\LostGoods\Listeners\AddNotificationThatClaimWasAccepted;
+use App\Modules\LostGoods\Listeners\AddNotificationThatClaimWasRejected;
 use App\Modules\LostGoods\Policies\LostGoodPolicy;
 use App\Modules\LostGoods\Policies\QuestionPolicy;
 use App\Modules\LostGoods\Repositories\LostGoodImageRepository\LostGoodImageRepository;
@@ -21,17 +25,24 @@ use App\Modules\LostGoods\Services\LostGoodImageService\LostGoodImageServiceInte
 use App\Modules\LostGoods\Services\LostGoodService\LostGoodService;
 use App\Modules\LostGoods\Services\LostGoodService\LostGoodServiceInterface;
 use App\Modules\Permissions\Permissions;
+use App\Providers\EventServiceProvider;
 use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\ServiceProvider;
 
-class LostGoodServiceProvider extends ServiceProvider
+class LostGoodServiceProvider extends EventServiceProvider
 {
     protected $listen = [
-
+        ClaimWasRejected::class => [
+            AddNotificationThatClaimWasRejected::class
+        ],
+        ClaimWasAccepted::class => [
+            AddNotificationThatClaimWasAccepted::class
+        ]
     ];
 
     public function boot()
     {
+        parent::boot();
+
         Gate::define(
             Permissions::CREATE_FOUND,
             LostGoodPolicy::class . '@create'
@@ -67,6 +78,18 @@ class LostGoodServiceProvider extends ServiceProvider
         Gate::define(
             Permissions::DELETE_QUESTION,
             QuestionPolicy::class . '@delete'
+        );
+        Gate::define(
+            Permissions::CREATE_LOST,
+            LostGoodPolicy::class . '@createLost'
+        );
+        Gate::define(
+            Permissions::UPDATE_LOST,
+            LostGoodPolicy::class . '@updateLost'
+        );
+        Gate::define(
+            Permissions::DELETE_LOST,
+            LostGoodPolicy::class . '@deleteLost'
         );
     }
 

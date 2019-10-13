@@ -18,7 +18,7 @@ class CreateNotificationsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->text('message');
             $table->text('url');
-            $table->boolean('was_seen_by_user')->default(false);
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
 
