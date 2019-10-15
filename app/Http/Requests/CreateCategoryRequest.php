@@ -30,9 +30,9 @@ class CreateCategoryRequest extends FormRequest
                 'required',
                 'max:191'
             ],
-            'parent_category_id' => [
-                'nullable',
-                'integer'
+            'category_icon' => [
+                'required',
+                'max:191'
             ]
         ];
     }

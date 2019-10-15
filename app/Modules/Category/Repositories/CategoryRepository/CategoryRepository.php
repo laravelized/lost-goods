@@ -24,7 +24,9 @@ class CategoryRepository implements CategoryRepositoryInterface
     public function create(array $params): Category
     {
         return $this->model->create([
-            'name' => $params['name']
+            'name' => $params['name'],
+            'parent_category_id' => $params['parent_category_id'] ?? null,
+            'font_awesome_icon_class_name' => $params['font_awesome_icon_class_name']
         ]);
     }
 
@@ -42,8 +44,14 @@ class CategoryRepository implements CategoryRepositoryInterface
     {
         $category->update([
             'name' => $params['name'],
-            'parent_category_id' => $params['parent_category_id'] ?? null
+            'font_awesome_icon_class_name' => $params['font_awesome_icon_class_name']
         ]);
+
+        if (isset($params['parent_category_id'])) {
+            $category->update([
+                'parent_category_id' => $params['parent_category_id']
+            ]);
+        }
     }
 
     public function deleteCategory(Category $category): void

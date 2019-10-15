@@ -9,6 +9,7 @@
 namespace App\Modules\Category\Services\ParamsValidators;
 
 use App\Modules\Category\Exceptions\CategoryDoesNotExistException;
+use App\Modules\Category\Exceptions\CategoryIconClassNameExceedsLimitException;
 use App\Modules\Category\Exceptions\CategoryNameExceedsLimitException;
 use App\Modules\Category\Services\CategoryService\CategoryServiceInterface;
 
@@ -25,6 +26,11 @@ class UpdateCategoryParams
      * @var integer
      */
     private $categoryId;
+
+    /**
+     * @var string
+     */
+    private $categoryFontAwesomeIconClass;
 
     /**
      * @var integer
@@ -52,6 +58,22 @@ class UpdateCategoryParams
     public function getName(): string
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $categoryFontAwesomeIconClass
+     */
+    public function setCategoryFontAwesomeIconClass(string $categoryFontAwesomeIconClass): void
+    {
+        $this->categoryFontAwesomeIconClass = $categoryFontAwesomeIconClass;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategoryFontAwesomeIconClass(): string
+    {
+        return $this->categoryFontAwesomeIconClass;
     }
 
     /**
@@ -90,6 +112,10 @@ class UpdateCategoryParams
     {
         if (strlen($this->name) > 191) {
             throw new CategoryNameExceedsLimitException('category_name_exceed_limit_exception');
+        }
+
+        if (strlen($this->getCategoryFontAwesomeIconClass()) > 191) {
+            throw new CategoryIconClassNameExceedsLimitException(CategoryIconClassNameExceedsLimitException::MESSAGE_KEY);
         }
 
         $category = $this->categoryService->getCategoryById($this->getCategoryId());

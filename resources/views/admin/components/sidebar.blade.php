@@ -1,11 +1,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard.index') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>
     </a>
 
     <!-- Divider -->
@@ -29,15 +29,38 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link" href="{{ route('admin.dashboard.category.index') }}">
             <i class="fas fa-fw fa-cog"></i>
-            <span>Category master</span>
+            <span>{{ __('label.category_master') }}</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{ route('admin.dashboard.category.index') }}">Categories list</a>
-            </div>
-        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.dashboard.user.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>{{ __('label.user_data') }}</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.dashboard.losts.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>{{ __('label.losts_data') }}</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.dashboard.founds.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>{{ __('label.founds_data') }}</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('admin.profile.index') }}">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>{{ __('label.my_profile') }}</span>
+        </a>
     </li>
 
     <!-- Sidebar Toggler (Sidebar) -->

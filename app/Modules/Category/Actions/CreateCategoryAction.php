@@ -30,6 +30,7 @@ class CreateCategoryAction
     {
         $createCategoryParams = $this->application->make(CreateCategoryParams::class);
         $createCategoryParams->setName($params['name']);
+        $createCategoryParams->setCategoryFontAwesomeIconClass($params['font_awesome_icon_class_name']);
 
         if (!is_null($params['parent_category_id'])) {
             $createCategoryParams->setParentCategoryId($params['parent_category_id']);
@@ -39,7 +40,8 @@ class CreateCategoryAction
 
         $this->categoryService->create([
             'name' => $createCategoryParams->getName(),
-            'parent_category_id' => $createCategoryParams->getParentCategoryId()
+            'parent_category_id' => $createCategoryParams->getParentCategoryId(),
+            'font_awesome_icon_class_name' => $createCategoryParams->getCategoryFontAwesomeIconClass()
         ]);
     }
 }

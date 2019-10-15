@@ -24,15 +24,10 @@ class ShowUpdateCategoryFormHandler extends Controller
     public function __invoke(ShowUpdateCategoryFormRequest $request, $categoryId)
     {
         try {
-            $categoryToBeUpdated = $this->categoryService->getCategoryById($categoryId);
-            $categories = $this->categoryService->getAllCategories();
-            $categoriesWithout = $categories->filter(function ($category) use ($categoryToBeUpdated) {
-                return $category->id !== $categoryToBeUpdated->id;
-            });
+            $category = $this->categoryService->getCategoryById($categoryId);
 
             return view('admin.dashboard.category.update', [
-                'categories' => $categoriesWithout,
-                'categoryToBeUpdated' => $categoryToBeUpdated
+                'category' => $category,
             ]);
 
         } catch (\Exception $exception) {

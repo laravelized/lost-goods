@@ -13,14 +13,14 @@
 @endif
 
 @if(session('exception'))
-<div class="alert alert-success alert-dismissible">
+<div class="alert alert-danger alert-dismissible">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>{{ session('exception') }}</strong>
 </div>
 @endif
 
 @if(session('info'))
-<div class="alert alert-success alert-dismissible">
+<div class="alert alert-info alert-dismissible">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <strong>{{ session('info') }}</strong>
 </div>

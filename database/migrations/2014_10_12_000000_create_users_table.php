@@ -27,6 +27,11 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('gender');
             $table->text('address');
 
+            $table->string('profile_picture_uploader_class')->nullable();
+            $table->text('profile_picture_file_name')->nullable();
+            $table->text('profile_picture_path')->nullable();
+            $table->text('profile_picture_url')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

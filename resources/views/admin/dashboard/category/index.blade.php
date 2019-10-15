@@ -2,34 +2,37 @@
 
 @section('content')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Categories</h1>
-        <a href="{{ route('admin.dashboard.category.create.form') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Create category</a>
+        <h1 class="h3 mb-0 text-gray-800">{{ __('label.categories') }}</h1>
+        <a href="{{ route('admin.dashboard.category.create.form') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> {{ __('label.create_category') }}</a>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Categories list</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">{{ __('label.categories_list') }}</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
-                                <th>Category name</th>
-                                <th>Actions</th>
+                                <th>{{ __('label.category_name') }}</th>
+                                <th>{{ __('label.category_icon') }}</th>
+                                <th>{{ __('label.actions') }}</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
-                                <th>Category name</th>
-                                <th>Actions</th>
+                                <th>{{ __('label.category_name') }}</th>
+                                <th>{{ __('label.category_icon') }}</th>
+                                <th>{{ __('label.actions') }}</th>
                             </tr>
                             </tfoot>
                             <tbody>
                                 @foreach($categories as $category)
                                 <tr>
                                     <td>{{ $category->name }}</td>
+                                    <td>{{ $category->font_awesome_icon_class_name }}</td>
                                     <td>
                                         <div class="form-group">
                                             <button data-form-action="{{ route('admin.dashboard.category.delete', ['categoryId' => $category->id]) }}" class="btn btn-sm btn-danger open-delete-confirmation-button">Delete</button>
@@ -50,17 +53,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Delete confirmation</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.delete_confirmation') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Do you want to delete the category ?
+                    {{ __('messages.confirmation.delete_category') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="delete-category-button" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('label.close') }}</button>
+                    <button id="delete-category-button" type="button" class="btn btn-danger">{{ __('label.delete') }}</button>
                 </div>
             </div>
         </div>

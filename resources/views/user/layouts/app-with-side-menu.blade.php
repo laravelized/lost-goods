@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Heroic Features - Start Bootstrap Template</title>
+    <title>{{ config('app.name') }}</title>
 
     @stack('before-style')
 

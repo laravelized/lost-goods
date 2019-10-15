@@ -30,10 +30,8 @@ class UpdateCategoryAction
     {
         $updateCategoryParams = $this->app->make(UpdateCategoryParams::class);
         $updateCategoryParams->setCategoryId($params['category_id']);
+        $updateCategoryParams->setCategoryFontAwesomeIconClass($params['font_awesome_icon_class_name']);
         $updateCategoryParams->setName($params['category_name']);
-        if (!is_null($params['parent_category_id'])) {
-            $updateCategoryParams->setParentCategoryId();
-        }
 
         $updateCategoryParams->validate();
 
@@ -41,7 +39,7 @@ class UpdateCategoryAction
 
         $this->categoryService->updateCategory($category, [
             'name' => $updateCategoryParams->getName(),
-            'parent_category_id' => $updateCategoryParams->getParentCategoryId()
+            'font_awesome_icon_class_name' => $updateCategoryParams->getCategoryFontAwesomeIconClass()
         ]);
     }
 }

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin\Dashboard\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Modules\Category\Actions\UpdateCategoryAction;
+use App\Services\Session\NotificationKeys;
 
 class UpdateCategoryHandler extends Controller
 {
@@ -26,21 +27,19 @@ class UpdateCategoryHandler extends Controller
         try {
 
             $name = $request->input('category_name');
-            $parentCategoryId = $request->input('parent_category_id') ?? null;
 
             $this->updateCategoryAction->act([
                 'category_id' => $categoryId,
                 'category_name' => $name,
-                'parent_category_id' => $parentCategoryId
+                'font_awesome_icon_class_name' => $request->input('category_icon')
             ]);
 
             return back()
-                ->with('success', 'Category has been updated successfully');
+                ->with(NotificationKeys::SUCCESS, 'Category has been updated successfully');
 
         } catch (\Exception $exception) {
-
             return back()
-                ->with('exception', $exception->getMessage());
+                ->with(NotificationKeys::EXCEPTION, $exception->getMessage());
         }
     }
 }

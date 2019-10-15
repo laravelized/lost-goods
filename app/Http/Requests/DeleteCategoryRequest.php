@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Modules\Category\Models\Category;
 use App\Modules\Permissions\Permissions;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
@@ -15,7 +16,8 @@ class DeleteCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows(Permissions::DELETE_CATEGORY);
+        $category = Category::where('id', $this->route()->parameter('categoryId'))->firstOrFail();
+        return Gate::allows(Permissions::DELETE_CATEGORY, $category);
     }
 
     /**

@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin\Dashboard\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCategoryRequest;
 use App\Modules\Category\Actions\CreateCategoryAction;
+use App\Services\Session\NotificationKeys;
 use Illuminate\Http\Request;
 
 class CreateCategoryHandler extends Controller
@@ -30,16 +31,17 @@ class CreateCategoryHandler extends Controller
 
             $this->createCategoryAction->act([
                 'name' => $request->input('category_name'),
-                'parent_category_id' => $request->input('parent_category_id') ?? null
+                'parent_category_id' => $request->input('parent_category_id') ?? null,
+                'font_awesome_icon_class_name' => $request->input('category_icon')
             ]);
 
             return back()
-                ->with('success', trans('messages.category_created'));
+                ->with(NotificationKeys::SUCCESS, trans('messages.category_created'));
 
         } catch (\Exception $exception) {
 
             return back()
-                ->with('exception', trans('exception_' . $exception->getMessage()));
+                ->with(NotificationKeys::EXCEPTION, trans('exception_' . $exception->getMessage()));
         }
     }
 }

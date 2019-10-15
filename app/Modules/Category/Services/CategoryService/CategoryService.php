@@ -24,10 +24,7 @@ class CategoryService implements CategoryServiceInterface
 
     public function create(array $params): Category
     {
-        return $this->categoryRepository->create([
-            'name' => $params['name'],
-            'parent_category_id' => $params['parent_category_id'] ?? null
-        ]);
+        return $this->categoryRepository->create($params);
     }
 
     public function getAllCategories(): Collection

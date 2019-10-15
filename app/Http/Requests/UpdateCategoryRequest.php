@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Modules\Category\Models\Category;
 use App\Modules\Permissions\Permissions;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
@@ -15,7 +16,8 @@ class UpdateCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return Gate::allows(Permissions::UPDATE_CATEGORY);
+        $category = Category::where('id', $this->route()->parameter('categoryId'))->firstOrFail();
+        return Gate::allows(Permissions::UPDATE_CATEGORY, $category);
     }
 
     /**
@@ -30,9 +32,9 @@ class UpdateCategoryRequest extends FormRequest
                 'required',
                 'max:191'
             ],
-            'parent_category_id' => [
-                'nullable',
-                'integer'
+            'category_icon' => [
+                'required',
+                'max:191'
             ]
         ];
     }
