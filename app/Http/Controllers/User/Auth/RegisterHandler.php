@@ -68,7 +68,7 @@ class RegisterHandler extends Controller
 
             return redirect()
                 ->route('user.login.form')
-                ->with(NotificationKeys::SUCCESS, 'Anda berhasil terdaftar, silahkan login');
+                ->with(NotificationKeys::SUCCESS, __('messages.notifications.registered_successfully'));
 
         } catch (\Exception $exception) {
 

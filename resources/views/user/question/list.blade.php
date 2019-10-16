@@ -3,12 +3,12 @@
 @section('content')
     <div class="row">
         <div class="col-md-12" style="margin-top: 20px;">
-            <a href="{{ route('user.founds.questions.create.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-success">Create question</a>
+            <a href="{{ route('user.founds.questions.create.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-success">{{ __('label.create_question') }}</a>
             <table class="table table-bordered">
                 <thead>
                 <tr>
-                    <th>Question</th>
-                    <th>Actions</th>
+                    <th>{{ __('label.question') }}</th>
+                    <th>{{ __('label.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -16,8 +16,8 @@
                     <tr>
                         <td>{{ $question->question_text }}</td>
                         <td>
-                            <a href="{{ route('user.question.update.form', ['questionId' => $question->id]) }}" class="btn btn-success btn-sm">Update</a>
-                            <button data-action-url="{{ route('user.question.delete', ['questionId' => $question->id]) }}" class="btn btn-danger btn-sm show-delete-question-modal">Delete</button>
+                            <a href="{{ route('user.question.update.form', ['questionId' => $question->id]) }}" class="btn btn-success btn-sm">{{ __('label.update') }}</a>
+                            <button data-action-url="{{ route('user.question.delete', ['questionId' => $question->id]) }}" class="btn btn-danger btn-sm show-delete-question-modal">{{ __('label.delete') }}</button>
                         </td>
                     </tr>
                 @endforeach
@@ -30,17 +30,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Delete question confirmation</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.delete_question_confirmation') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Delete this question ?
+                    {{ __('messages.confirmation.delete_question') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="delete-question-button" type="button" class="btn btn-danger">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('label.close') }}</button>
+                    <button id="delete-question-button" type="button" class="btn btn-danger">{{ __('label.delete') }}</button>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h5>Pasang barang hilang</h5>
+                    <h5>{{ __('label.post_lost') }}</h5>
                 </div>
                 <div class="card-body">
                     <form autocomplete="off" enctype="multipart/form-data" action="{{ route('user.lost.my.post') }}" method="POST">
@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="">Judul barang</label>
+                                    <label for="">{{ __('label.good_name') }}</label>
                                     <input value="{{ old('good_name') }}" name="good_name" type="text" class="form-control @error('good_name') is-invalid @enderror">
                                     @error('good_name')
                                     <span class="invalid-feedback" role="alert">
@@ -22,7 +22,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Detail informasi</label>
+                                    <label for="">{{ __('label.information_details') }}</label>
                                     <textarea name="information_details" id="" cols="30" rows="10" class="form-control @error('information_details') is-invalid @enderror">{{ old('information_details') }}</textarea>
                                     @error('information_details')
                                     <span class="invalid-feedback" role="alert">
@@ -31,10 +31,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Kategori</label>
+                                    <label for="">{{ __('label.goods_category') }}</label>
                                     <select name="category" class="form-control @error('category') is-invalid @enderror">
                                         @foreach($categories as $category)
-                                            <option @if(old('category') === $category->name) selected @endif value="{{ $category->name }}">{{ $category->name }}</option>
+                                            <option @if(old('category') === $category->name) selected @endif value="{{ $category->name }}">{{ __('categories.' . $category->name)  }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="">Tempat hilang</label>
+                                    <label for="">{{ __('label.lost_place') }}</label>
                                     <input value="{{ old('place_of_lost') }}" name="place_of_lost" type="text" class="form-control @error('place_of_lost') is-invalid @enderror">
                                     @error('place_of_lost')
                                     <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Tanggal hilang</label>
+                                    <label for="">{{ __('label.lost_date') }}</label>
                                     <input value="{{ old('date_of_lost') }}" id="date-input" name="date_of_lost" type="text" class="form-control @error('date_of_lost') is-invalid @enderror">
                                     @error('date_of_lost')
                                     <span class="invalid-feedback" role="alert">
@@ -64,11 +64,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Image</label>
+                                    <label for="">{{ __('label.image') }}</label>
                                     <input name="image" type="file" class="form-control-file">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Nomor HP</label>
+                                    <label for="">{{ __('label.mobile_number') }}</label>
                                     <input value="{{ old('mobile_number') }}" type="text" class="form-control @error('mobile_number') is-invalid @enderror" name="mobile_number">
                                     @error('mobile_number')
                                     <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block">Simpan</button>
+                                    <button class="btn btn-success btn-block">{{ __('label.save') }}</button>
                                 </div>
                             </div>
                         </div>

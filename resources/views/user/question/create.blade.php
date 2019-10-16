@@ -7,13 +7,13 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Isi pertanyaan untuk barang tersebut</h5>
+                            <h5>{{ __('label.fill_question_for_the_goods') }}</h5>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('user.founds.questions.create', ['lostGoodId' => $lostGood->id]) }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="">Pertanyaan</label>
+                                    <label for="">{{ __('label.question') }}</label>
                                     <textarea name="question"  cols="30" rows="5" class="form-control @error('question') is-invalid @enderror">{{ old('question') }}</textarea>
                                     @error('question')
                                     <span class="invalid-feedback" role="alert">
@@ -22,8 +22,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block">Simpan</button>
-                                    <a href="{{ route('user.founds.my.list') }}" class="btn btn-warning btn-block">Kembali</a>
+                                    <button class="btn btn-success btn-block">{{ __('label.save') }}</button>
+                                    <a href="{{ route('user.founds.my.list') }}" class="btn btn-warning btn-block">{{ __('label.back') }}</a>
                                 </div>
                             </form>
                         </div>

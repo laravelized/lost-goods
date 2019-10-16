@@ -5,16 +5,16 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5>Daftar klaim</h5>
+                    <h5>{{ __('label.claims_list') }}</h5>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>Username</th>
-                            <th>Alamat</th>
-                            <th>Tombol</th>
+                            <th>{{ __('label.name') }}</th>
+                            <th>{{ __('label.username') }}</th>
+                            <th>{{ __('label.address') }}</th>
+                            <th>{{ __('label.buttons') }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,13 +25,13 @@
                                 <td>{{ $claim->user->username }}</td>
                                 <td>{{ $claim->user->address }}</td>
                                 <td>
-                                    <a href="{{ route('user.claims.detail', ['claimId' => $claim->id]) }}" class="btn btn-sm btn-info">Lihat jawaban</a>
+                                    <a href="{{ route('user.claims.detail', ['claimId' => $claim->id]) }}" class="btn btn-sm btn-info">{{ __('label.see_the_answer') }}</a>
                                 </td>
                             </tr>
                         @endforeach
                         @else
                             <tr>
-                                <td colspan="4" class="text-center">Tidak ada klaim</td>
+                                <td colspan="4" class="text-center">{{ __('label.no_claims') }}</td>
                             </tr>
                         @endif
                         </tbody>

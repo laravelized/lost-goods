@@ -29,7 +29,7 @@ class CreateQuestionHandler extends Controller
 
             return redirect()
                 ->route('user.founds.my.list')
-                ->with(NotificationKeys::SUCCESS, 'Pertanyaan telah berhasil tersimpan');
+                ->with(NotificationKeys::SUCCESS, __('messages.notifications.question_has_been_saved'));
 
         } catch (\Exception $exception) {
             abort(500);

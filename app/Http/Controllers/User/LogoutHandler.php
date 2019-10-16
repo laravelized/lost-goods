@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Services\Session\NotificationKeys;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,6 @@ class LogoutHandler extends Controller
 
         return redirect()
             ->route('user.index')
-            ->with('success', 'You has been logged out successfully');
+            ->with(NotificationKeys::SUCCESS, __('messages.notifications.you_have_been_logged_out'));
     }
 }

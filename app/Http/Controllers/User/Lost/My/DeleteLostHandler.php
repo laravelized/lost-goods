@@ -13,15 +13,12 @@ class DeleteLostHandler extends Controller
     public function __invoke(DeleteLostRequest $request, $lostGoodId)
     {
         try {
-            $lostGood = LostGood::where('id', $lostGoodId)->first();
-            if (is_null($lostGood)) {
-
-            }
+            $lostGood = LostGood::where('id', $lostGoodId)->firstOrFail();
 
             $lostGood->delete();
 
             return back()
-                ->with(NotificationKeys::SUCCESS, 'Pengumuman barang hilang telah terhapus');
+                ->with(NotificationKeys::SUCCESS, __('messages.notifications.lost_deleted'));
 
         } catch (\Exception $exception) {
             return back()

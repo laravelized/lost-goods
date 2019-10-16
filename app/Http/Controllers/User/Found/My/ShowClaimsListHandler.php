@@ -11,14 +11,10 @@ class ShowClaimsListHandler extends Controller
 {
     public function __invoke(Request $request, $lostGoodId)
     {
-        try {
-            $lostGood = LostGood::where('id', $lostGoodId)->first();
-            $claims = Claim::where('lost_good_id', $lostGood->id)->get();
-            return view('user.claim.list', [
-                'claims' => $claims
-            ]);
-        } catch (\Exception $exception) {
-            throw $exception;
-        }
+        $lostGood = LostGood::where('id', $lostGoodId)->first();
+        $claims = Claim::where('lost_good_id', $lostGood->id)->get();
+        return view('user.claim.list', [
+            'claims' => $claims
+        ]);
     }
 }

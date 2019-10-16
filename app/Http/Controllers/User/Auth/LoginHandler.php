@@ -52,7 +52,7 @@ class LoginHandler extends Controller
 
             return redirect()
                 ->route('user.index')
-                ->with(NotificationKeys::SUCCESS, 'Anda berhasil login');
+                ->with(NotificationKeys::SUCCESS, __('messages.notifications.logged_in_successfully'));
 
         } catch (\Exception $exception) {
 

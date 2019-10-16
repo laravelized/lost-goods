@@ -8,39 +8,39 @@
             @if(!auth()->check())
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.login.form') }}">Login</a>
+                    <a class="nav-link" href="{{ route('user.login.form') }}">{{ __('label.login') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.register.form') }}">Register</a>
+                    <a class="nav-link" href="{{ route('user.register.form') }}">{{ __('label.register') }}</a>
                 </li>
             </ul>
             @else
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a id="notification-link" class="nav-link" href="{{ route('user.notifications.list') }}">Notifikasi @if($unreadNotificationsCount)<span class="badge badge-danger">{{ $unreadNotificationsCount }}</span>@endif
+                    <a id="notification-link" class="nav-link" href="{{ route('user.notifications.list') }}">{{ __('label.notifications') }} @if($unreadNotificationsCount)<span class="badge badge-danger">{{ $unreadNotificationsCount }}</span>@endif
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Daftar unggahan pengguna</a>
+                       aria-expanded="false">{{ __('label.other_users_content') }}</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="{{ route('user.lost.others.list') }}">Pengumuman kehilangan</a>
-                        <a class="dropdown-item" href="{{ route('user.founds.others.list') }}">Pengumuman penemuan barang</a>
+                        <a class="dropdown-item" href="{{ route('user.lost.others.list') }}">{{ __('label.losts') }}</a>
+                        <a class="dropdown-item" href="{{ route('user.founds.others.list') }}">{{ __('label.founds') }}</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">Pasang pengumuman</a>
+                       aria-expanded="false">{{ __('label.create_notifications') }}</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="{{ route('user.lost.my.list') }}">Kehilangan</a>
-                        <a class="dropdown-item" href="{{ route('user.founds.my.list') }}">Penemuan barang</a>
+                        <a class="dropdown-item" href="{{ route('user.lost.my.list') }}">{{ __('label.losts') }}</a>
+                        <a class="dropdown-item" href="{{ route('user.founds.my.list') }}">{{ __('label.founds') }}</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
                        aria-expanded="false">{{ auth()->user()->username }}</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a id="logout-link-confirmation" class="dropdown-item" href="#">Logout</a>
+                        <a id="logout-link-confirmation" class="dropdown-item" href="#">{{ __('label.logout') }}</a>
                     </div>
                 </li>
             </ul>
@@ -54,17 +54,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Logout confirmation</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.logout_confirmation') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Do you want to logout ?
+                    {{ __('messages.confirmation.logout') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="logout-button" type="button" class="btn btn-danger">Logout</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('label.close') }}</button>
+                    <button id="logout-button" type="button" class="btn btn-danger">{{ __('label.logout') }}</button>
                 </div>
             </div>
         </div>

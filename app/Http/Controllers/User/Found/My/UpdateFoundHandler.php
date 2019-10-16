@@ -110,7 +110,7 @@ class UpdateFoundHandler extends Controller
             }
 
             return back()
-                ->with(NotificationKeys::SUCCESS, 'Pengumuman barang temuan berhasil diubah');
+                ->with(NotificationKeys::SUCCESS, __('messages.notifications.found_post_updated'));
 
         } catch (\Exception $exception) {
             return back()

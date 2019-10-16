@@ -8,7 +8,7 @@
     <div class="row">
         @if($showCreateButton)
             <div class="col-md-12">
-                <a href="{{ route('user.lost.my.post.form') }}" class="btn btn-success">Buat pengumuman kehilangan</a>
+                <a href="{{ route('user.lost.my.post.form') }}" class="btn btn-success">{{ __('label.create_lost_post') }}</a>
             </div>
         @endif
 
@@ -28,29 +28,29 @@
                                     <div class="col-md-7">
                                         <table class="table table-bordered table-sm">
                                             <tr>
-                                                <th>Nama barang</th>
+                                                <th>{{ __('label.good_name') }}</th>
                                                 <td>{{ $lostGood->name }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Kategori</th>
+                                                <th>{{ __('label.good_category') }}</th>
                                                 <td>
-                                                    {{ $lostGood->categories[0]->name }}
+                                                    {{ __('categories.' . $lostGood->categories[0]->name)  }}
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Tanggal hilang</th>
+                                                <th>{{ __('label.lost_date') }}</th>
                                                 <td>{{ $lostGood->date->format('d-m-Y') }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Tempat hilang</th>
+                                                <th>{{ __('label.lost_place') }}</th>
                                                 <td>{{ $lostGood->place_details }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Informasi</th>
+                                                <th>{{ __('label.information') }}</th>
                                                 <td>{{ $lostGood->information }}</td>
                                             </tr>
                                             <tr>
-                                                <th>Nomor HP</th>
+                                                <th>{{ __('label.mobile_number') }}</th>
                                                 <td>
                                                     <button class="btn btn-success btn-sm"><strong>{{ $lostGood->mobile_number }}</strong></button>
                                                 </td>
@@ -59,10 +59,10 @@
                                     </div>
                                     <div class="col-md-2">
                                         @can(\App\Modules\Permissions\Permissions::UPDATE_LOST, $lostGood)
-                                        <button data-action-url="{{ route('user.lost.my.delete', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-danger btn-block btn-sm show-delete-lost-confirm-modal-button">Hapus</button>
+                                        <button data-action-url="{{ route('user.lost.my.delete', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-danger btn-block btn-sm show-delete-lost-confirm-modal-button">{{ __('label.delete') }}</button>
                                         @endcan
                                         @can(\App\Modules\Permissions\Permissions::DELETE_LOST, $lostGood)
-                                        <a href="{{ route('user.lost.my.update.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-success btn-block btn-sm">Ubah</a>
+                                        <a href="{{ route('user.lost.my.update.form', ['lostGoodId' => $lostGood->id]) }}" class="btn btn-success btn-block btn-sm">{{ __('label.update') }}</a>
                                         @endcan
                                     </div>
                                 </div>
@@ -77,17 +77,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi hapus</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.delete_confirmation') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Hapus pengumuman kehilangan ini ?
+                    {{ __('messages.confirmation.delete_lost') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button id="delete-lost-button" type="button" class="btn btn-danger">Hapus</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('label.close') }}</button>
+                    <button id="delete-lost-button" type="button" class="btn btn-danger">{{ __('label.delete') }}</button>
                 </div>
             </div>
         </div>

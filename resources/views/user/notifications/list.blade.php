@@ -9,14 +9,14 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h5>Notifikasi</h5>
+                    <h5>{{ __('label.notifications') }}</h5>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Pesan</th>
-                                <th>Link</th>
+                                <th>{{ __('label.message') }}</th>
+                                <th>{{ __('label.link') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,7 +25,7 @@
                             <tr class="@if($notification->status === NotificationStatuses::CREATED || $notification->status === NotificationStatuses::VIEWED_GROUPLY) table-primary @endif">
                                 <td>{{ $notification->message }}</td>
                                 <td>
-                                    <a data-url="{{ route('user.notifications.mark-as-visited', ['notificationId' => $notification->id]) }}" href="{{ $notification->url }}" class="@if($notification->status === NotificationStatuses::CREATED || $notification->status === NotificationStatuses::VIEWED_GROUPLY) unclicked-notification-link @endif btn btn-success btn-sm">Tampilkan</a>
+                                    <a data-url="{{ route('user.notifications.mark-as-visited', ['notificationId' => $notification->id]) }}" href="{{ $notification->url }}" class="@if($notification->status === NotificationStatuses::CREATED || $notification->status === NotificationStatuses::VIEWED_GROUPLY) unclicked-notification-link @endif btn btn-success btn-sm">{{ __('label.show') }}</a>
                                 </td>
                             </tr>
                             @endforeach

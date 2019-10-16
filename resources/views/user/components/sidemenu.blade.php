@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header">
-                <strong>Navigasi barang</strong>
+                <strong>{{ __('label.goods_navigation') }}</strong>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item @if(Route::current()->getName() === 'user.lost.my.list' || Route::current()->getName() === 'user.lost.others.list') active @endif">
@@ -30,7 +30,7 @@
     <div class="col-md-12 mt-5">
         <div class="card">
             <div class="card-header">
-                <strong>Kategori barang</strong>
+                <strong>{{ __('label.goods_categories') }}</strong>
             </div>
             <ul class="list-group list-group-flush">
                 @if(Route::current()->getName() === 'user.founds.my.list')

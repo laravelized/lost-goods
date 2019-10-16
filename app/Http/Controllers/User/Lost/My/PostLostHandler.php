@@ -113,7 +113,7 @@ class PostLostHandler extends Controller
 
             return redirect()
                 ->route('user.lost.my.list')
-                ->with(NotificationKeys::SUCCESS, 'Pengumuman barang hilang telah terpasang');
+                ->with(NotificationKeys::SUCCESS, __('messages.notifications.lost_created'));
 
         } catch (\Exception $exception) {
 

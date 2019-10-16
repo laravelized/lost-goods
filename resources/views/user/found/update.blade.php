@@ -5,7 +5,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h5>Ubah barang temuan</h5>
+                    <h5>{{ __('label.update_found') }}</h5>
                 </div>
                 <div class="card-body">
                     <form autocomplete="off" enctype="multipart/form-data" action="{{ route('user.founds.my.update', ['lostGoodId' => $lostGood->id]) }}" method="POST">
@@ -13,7 +13,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="">Judul barang</label>
+                                    <label for="">{{ __('label.good_name') }}</label>
                                     <input value="{{ $lostGood->name }}" name="good_name" type="text" class="form-control @error('good_name') is-invalid @enderror">
                                     @error('good_name')
                                     <span class="invalid-feedback" role="alert">
@@ -22,10 +22,10 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Kategori barang</label>
+                                    <label for="">{{ __('label.goods_category') }}</label>
                                     <select name="category" class="form-control @error('category') is-invalid @enderror">
                                         @foreach($categories as $category)
-                                            <option @if($lostGood->categories[0]->id === $category->id) selected @endif value="{{ $category->name }}">{{ $category->name }}</option>
+                                            <option @if($lostGood->categories[0]->id === $category->id) selected @endif value="{{ $category->name }}">{{ __('categories.' . $category->name) }}</option>
                                         @endforeach
                                     </select>
                                     @error('category')
@@ -35,7 +35,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Tempat penemuan</label>
+                                    <label for="">{{ __('label.found_place') }}</label>
                                     <input value="{{ $lostGood->place_details }}" name="place_of_found" type="text" class="form-control @error('place_of_found') is-invalid @enderror">
                                     @error('place_of_found')
                                     <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="">Tanggal penemuan</label>
+                                    <label for="">{{ __('label.found_date') }}</label>
                                     <input value="{{ $lostGood->date->format('Y-m-d') }}" id="date_of_found_input" name="date_of_found" type="text" class="form-control @error('date_of_found') is-invalid @enderror">
                                     @error('date_of_found')
                                     <span class="invalid-feedback" role="alert">
@@ -55,11 +55,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Gambar</label>
+                                    <label for="">{{ __('label.image') }}</label>
                                     <input name="image" type="file" class="form-control-file">
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Nomor HP</label>
+                                    <label for="">{{ __('label.mobile_number') }}</label>
                                     <input value="{{ $lostGood->mobile_number }}" type="text" class="form-control @error('mobile_number') is-invalid @enderror" name="mobile_number">
                                     @error('mobile_number')
                                     <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block">Ubah</button>
+                                    <button class="btn btn-success btn-block">{{ __('label.update') }}</button>
                                 </div>
                             </div>
                         </div>

@@ -12,39 +12,34 @@ class ShowClaimDetailHandler extends Controller
 {
     public function __invoke(Request $request, $claimId)
     {
-        try {
-            $claim = Claim
-                ::with([
-                    'lostGood',
-                    'user'
-                ])
-                ->where('id', $claimId)
-                ->first();
+        $claim = Claim
+            ::with([
+                'lostGood',
+                'user'
+            ])
+            ->where('id', $claimId)
+            ->first();
 
-            $lostGood = $claim->lostGood;
-            $images = $lostGood->lostGoodImages;
-            $image = $images[0];
-            $questions = $lostGood->questions;
-            $question = $questions[0];
+        $lostGood = $claim->lostGood;
+        $images = $lostGood->lostGoodImages;
+        $image = $images[0];
+        $questions = $lostGood->questions;
+        $question = $questions[0];
 
-            $answer = Answer::where('lost_good_claim_id', $claim->id)
-                ->where('lost_good_question_id', $question->id)
-                ->first();
+        $answer = Answer::where('lost_good_claim_id', $claim->id)
+            ->where('lost_good_question_id', $question->id)
+            ->first();
 
-            $chats = Chat::where('claim_id', $claim->id)->get();
+        $chats = Chat::where('claim_id', $claim->id)->get();
 
-            return view('user.claim.detail', [
-                'claim' => $claim,
-                'answer' => $answer,
-                'question' => $question,
-                'user' => $claim->user,
-                'lostGood' => $lostGood,
-                'image' => $image,
-                'chats' => $chats
-            ]);
-
-        } catch (\Exception $exception) {
-            throw $exception;
-        }
+        return view('user.claim.detail', [
+            'claim' => $claim,
+            'answer' => $answer,
+            'question' => $question,
+            'user' => $claim->user,
+            'lostGood' => $lostGood,
+            'image' => $image,
+            'chats' => $chats
+        ]);
     }
 }

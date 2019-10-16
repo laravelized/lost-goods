@@ -23,15 +23,9 @@ class ShowPostFoundFormHandler extends Controller
 
     public function __invoke(Request $request)
     {
-        try {
-
-            $categories = $this->categoryService->getAllCategories();
-            return view('user.found.create', [
-                'categories' => $categories
-            ]);
-
-        } catch (\Exception $exception) {
-
-        }
+        $categories = $this->categoryService->getAllCategories();
+        return view('user.found.create', [
+            'categories' => $categories
+        ]);
     }
 }

@@ -25,7 +25,7 @@ class UpdateQuestionHandler extends Controller
                 'question_text' => $request->input('question')
             ]);
             return back()
-                ->with(NotificationKeys::SUCCESS, 'Pertanyaan telah berhasil terubah');
+                ->with(NotificationKeys::SUCCESS, __('messages.notifications.question_updated'));
         } catch (\Exception $exception) {
             abort(500);
         }

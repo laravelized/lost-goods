@@ -5,7 +5,7 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h5>Laporan klaim</h5>
+                    <h5>{{ __('label.claim_report') }}</h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -23,27 +23,27 @@
                             <table class="table table-bordered table-sm">
                                 <thead>
                                     <tr>
-                                        <th>Username</th>
+                                        <th>{{ __('label.username') }}</th>
                                         <td>{{ $user->username }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Pertanyaan</th>
+                                        <th>{{ __('label.question') }}</th>
                                         <td>{{ $question->question_text }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Jawaban</th>
+                                        <th>{{ __('label.answer') }}</th>
                                         <td>{{ $answer->answer_text }}</td>
                                     </tr>
                                     @if($claim->status !== \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::CREATED)
                                     <tr>
-                                        <th>Status</th>
+                                        <th>{{ __('label.status') }}</th>
                                         <td>
                                             @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::ACCEPTED)
-                                            <button class="btn btn-success btn-sm">Diterima</button>
+                                            <button class="btn btn-success btn-sm">{{ __('label.accepted') }}</button>
                                             @endif
 
                                             @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::DENIED)
-                                            <button class="btn btn-danger btn-sm">Ditolak</button>
+                                            <button class="btn btn-danger btn-sm">{{ __('label.rejected') }}</button>
                                             @endif
                                         </td>
                                     </tr>
@@ -53,13 +53,13 @@
                         </div>
                         @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::ACCEPTED)
                         <div class="col-md-12">
-                            <button id="open-chat-modal-button" class="btn btn-warning btn-block">Chat</button>
+                            <button id="open-chat-modal-button" class="btn btn-warning btn-block">{{ __('label.chat') }}</button>
                         </div>
                         @endif
                         @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::CREATED)
                         <div class="col-md-12 text-center">
-                            <button id="show-accept-confirmation-button" class="btn btn-success btn-sm">Terima</button>
-                            <button id="show-reject-confirmation-button" class="btn btn-danger btn-sm">Tolak</button>
+                            <button id="show-accept-confirmation-button" class="btn btn-success btn-sm">{{ __('label.accept') }}</button>
+                            <button id="show-reject-confirmation-button" class="btn btn-danger btn-sm">{{ __('label.reject') }}</button>
                             <form id="accept-claim-form" action="{{ route('user.claims.detail.accept', ['claimId' => $claim->id]) }}" method="POST">
                                 @csrf
                             </form>
@@ -78,17 +78,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi terima klaim</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.accept_claim_confirmation') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah anda akan menerima klaim ini ?
+                    {{ __('messages.confirmation.accept_claim') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button id="accept-claim-button" type="button" class="btn btn-success">Terima</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('label.close') }}</button>
+                    <button id="accept-claim-button" type="button" class="btn btn-success">{{ __('label.accept') }}</button>
                 </div>
             </div>
         </div>
@@ -98,17 +98,17 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Konfirmasi tolak klaim</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.reject_claim_confirmation') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Apakah anda akan menolak klaim ini ?
+                    {{ __('messages.confirmation.reject_claim') }}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button id="reject-claim-button" type="button" class="btn btn-danger">Tolak</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('label.close') }}</button>
+                    <button id="reject-claim-button" type="button" class="btn btn-danger">{{ __('label.reject') }}</button>
                 </div>
             </div>
         </div>
@@ -118,7 +118,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Chat</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.chat') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -165,7 +165,7 @@
                                     <textarea id="chat-input" class="form-control"></textarea>
                                 </div>
                                 <div class="col-12 mt-2">
-                                    <button id="send-chat-button" class="btn btn-success btn-block">Send</button>
+                                    <button id="send-chat-button" class="btn btn-success btn-block">{{ __('label.send') }}</button>
                                 </div>
                             </div>
                         </div>

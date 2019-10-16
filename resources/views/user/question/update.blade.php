@@ -7,13 +7,13 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-header">
-                            <h5>Ubah pertanyaan untuk barang tersebut</h5>
+                            <h5>{{ __('label.update_question_for_the_goods') }}</h5>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('user.question.update', ['questionId' => $question->id]) }}" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="">Pertanyaan</label>
+                                    <label for="">{{ __('label.question') }}</label>
                                     <textarea name="question"  cols="30" rows="5" class="form-control @error('question') is-invalid @enderror">{{ $question->question_text }}</textarea>
                                     @error('question')
                                     <span class="invalid-feedback" role="alert">
@@ -22,8 +22,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button class="btn btn-success btn-block">Ubah</button>
-                                    <a href="{{ route('user.founds.my.list') }}" class="btn btn-warning btn-block">Kembali</a>
+                                    <button class="btn btn-success btn-block">{{ __('label.update') }}</button>
+                                    <a href="{{ route('user.founds.my.list') }}" class="btn btn-warning btn-block">{{ __('label.back') }}</a>
                                 </div>
                             </form>
                         </div>

@@ -110,7 +110,7 @@ class PostFoundHandler extends Controller
 
             $request->session()->put('just_created_lost_good_id', $lostGood->id);
             return back()
-                ->with(NotificationKeys::SUCCESS, 'Pengumuman penemuan barang telah terbuat');
+                ->with(NotificationKeys::SUCCESS, __('label.found_post_has_been_created'));
 
         } catch (\Exception $exception) {
 

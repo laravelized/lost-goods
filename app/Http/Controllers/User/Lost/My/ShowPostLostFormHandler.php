@@ -11,13 +11,9 @@ class ShowPostLostFormHandler extends Controller
 {
     public function __invoke(CreateLostRequest $request)
     {
-        try {
-            $categories = Category::all();
-            return view('user.lost.create', [
-                'categories' => $categories
-            ]);
-        } catch (\Exception $exception) {
-
-        }
+        $categories = Category::all();
+        return view('user.lost.create', [
+            'categories' => $categories
+        ]);
     }
 }

@@ -58,15 +58,9 @@ class UpdateLostHandler extends Controller
         ]);
 
         try {
-            $category = Category::where('name', $request->input('category'))->first();
-            if (is_null($category)) {
+            $category = Category::where('name', $request->input('category'))->firstOrFail();
 
-            }
-
-            $lostGood = LostGood::where('id', $lostGoodId)->first();
-            if (is_null($lostGood)) {
-
-            }
+            $lostGood = LostGood::where('id', $lostGoodId)->firstOrFail();
 
             $lostGood->update([
                 'name' => $request->input('good_name'),
@@ -79,7 +73,8 @@ class UpdateLostHandler extends Controller
             $lostGood->categories()->sync([$category->id]);
 
         } catch (\Exception $exception) {
-            abort(500);
+            return back()
+                ->with(NotificationKeys::EXCEPTION, __('label.something_went_wrong'));
         }
 
         try {
@@ -129,6 +124,6 @@ class UpdateLostHandler extends Controller
         }
 
         return back()
-            ->with(NotificationKeys::SUCCESS, 'Pengumumuman kehilangan telah diubah');
+            ->with(NotificationKeys::SUCCESS, __('messages.notifications.lost_updated'));
     }
 }

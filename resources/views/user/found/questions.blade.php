@@ -7,7 +7,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Question</th>
+                        <th>{{ __('label.question') }}</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -12,15 +12,11 @@ class ShowQuestionsListHandler extends Controller
 {
     public function __invoke(Request $request, $lostGoodId)
     {
-        try {
-            $lostGood = LostGood::where('id', $lostGoodId)->first();
-            $questions = $lostGood->questions;
-            return view('user.question.list', [
-                'questions' => $questions,
-                'lostGood' => $lostGood
-            ]);
-        } catch (\Exception $exception) {
-
-        }
+        $lostGood = LostGood::where('id', $lostGoodId)->first();
+        $questions = $lostGood->questions;
+        return view('user.question.list', [
+            'questions' => $questions,
+            'lostGood' => $lostGood
+        ]);
     }
 }

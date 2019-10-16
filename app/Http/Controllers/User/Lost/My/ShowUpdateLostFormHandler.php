@@ -12,15 +12,11 @@ class ShowUpdateLostFormHandler extends Controller
 {
     public function __invoke(ShowUpdateLostFormRequest $request, $lostGoodId)
     {
-        try {
-            $categories = Category::all();
-            $lostGood = LostGood::where('id', $lostGoodId)->first();
-            return view('user.lost.update', [
-                'lostGood' => $lostGood,
-                'categories' => $categories
-            ]);
-        } catch (\Exception $exception) {
-
-        }
+        $categories = Category::all();
+        $lostGood = LostGood::where('id', $lostGoodId)->first();
+        return view('user.lost.update', [
+            'lostGood' => $lostGood,
+            'categories' => $categories
+        ]);
     }
 }

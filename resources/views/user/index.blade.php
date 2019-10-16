@@ -4,8 +4,8 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <h1><strong>Pencarian barang hilang</strong></h1>
-            <p>Pencarian barang jadi lebih mudah dan aman dengan menggunakan website kami</p>
+            <h1><strong>{{ __('label.lost_good_search') }}</strong></h1>
+            <p>{{ __('label.search_lost_goods_become_easy') }}</p>
             <form
                 @if(request()->query('type', null) === 'lost' || is_null(request()->query('type', null)))
                 action="{{ route('user.lost.others.list') }}"
@@ -15,12 +15,12 @@
 
                 method="GET">
 
-                <input type="text" name="keyword" class="form-control" placeholder="Cari barang hilang di sini .....">
+                <input type="text" name="keyword" class="form-control" placeholder="{{ __('label.search_your_lost_good_here') }}">
             </form>
         </div>
         <div class="col-md-12 text-center text-center mt-5">
-            <a class="btn @if(request()->query('type') === 'lost' || is_null(request()->query('type', null))) btn-success @else btn-outline-success @endif" href="{{ route('user.index', ['type' => 'lost']) }}">Barang kehilangan</a>
-            <a class="btn @if(request()->query('type') === 'found') btn-success @else btn-outline-success @endif" href="{{ route('user.index', ['type' => 'found']) }}">Barang Temuan</a>
+            <a class="btn @if(request()->query('type') === 'lost' || is_null(request()->query('type', null))) btn-success @else btn-outline-success @endif" href="{{ route('user.index', ['type' => 'lost']) }}">{{ __('label.found_goods') }}</a>
+            <a class="btn @if(request()->query('type') === 'found') btn-success @else btn-outline-success @endif" href="{{ route('user.index', ['type' => 'found']) }}">{{ __('label.lost_goods') }}</a>
         </div>
     </div>
 

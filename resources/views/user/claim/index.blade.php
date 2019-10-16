@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Laporan klaim</h5>
+                        <h5>{{ __('label.claim_report') }}</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -24,30 +24,30 @@
                                 <table class="table table-bordered table-sm">
                                     <thead>
                                     <tr>
-                                        <th>Username</th>
+                                        <th>{{ __('label.username') }}</th>
                                         <td>{{ $lostGood->user->username }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Tanggal temuan</th>
+                                        <th>{{ __('label.found_date') }}</th>
                                         <td>{{ $lostGood->date->format('d-m-Y') }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Tempat temuan</th>
+                                        <th>{{ __('label.found_place') }}</th>
                                         <td>{{ $lostGood->place_details }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Kategori</th>
-                                        <td>{{ $lostGood->categories[0]->name }}</td>
+                                        <th>{{ __('label.category') }}</th>
+                                        <td>{{ __('categories.' . $lostGood->categories[0]->name)  }}</td>
                                     </tr>
                                     <tr>
-                                        <th>Status</th>
+                                        <th>{{ __('label.status') }}</th>
                                         <td>
                                             @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::ACCEPTED)
-                                                <button class="btn btn-success btn-sm">Diterima</button>
+                                                <button class="btn btn-success btn-sm">{{ __('label.accepted') }}</button>
                                             @endif
 
                                             @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::DENIED)
-                                                <button class="btn btn-danger btn-sm">Ditolak</button>
+                                                <button class="btn btn-danger btn-sm">{{ __('label.rejected') }}</button>
                                             @endif
                                         </td>
                                     </tr>
@@ -56,10 +56,10 @@
                             </div>
                             @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::ACCEPTED)
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-primary btn-block">Silahkan hubungi {{ $lostGood->user->mobile_number }}</button>
+                                <button class="btn btn-primary btn-block">{{ __('label.please_contact') }}{{ $lostGood->user->mobile_number }}</button>
                             </div>
                             <div class="col-md-12 text-center mt-3">
-                                <button id="open-chat-modal-button" class="btn btn-warning btn-block">Chat</button>
+                                <button id="open-chat-modal-button" class="btn btn-warning btn-block">{{ __('label.chat') }}</button>
                             </div>
                             @endif
                         </div>
@@ -72,12 +72,12 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Pengakuan barang</h5>
+                        <h5>{{ __('label.claim_goods') }}</h5>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Jawablah pertanyaan sesuai yang anda ketahui tentang barang tersebut</p>
+                                <p>{{ __('label.answer_question_about_the_goods') }}</p>
                             </div>
                             <div class="col-md-12">
                                 <form action="{{ route('user.founds.others.claim', ['lostGoodId' => $lostGood->id]) }}" method="POST">
@@ -85,13 +85,13 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="">Pertanyaan</label>
+                                                <label for="">{{ __('label.question') }}</label>
                                                 <input readonly type="text" class="form-control" value="{{ $questions[0]->question_text }}">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="">Jawaban</label>
+                                                <label for="">{{ __('label.answer') }}</label>
                                                 <textarea name="answer" cols="30" rows="5" class="form-control @error('answer') is-invalid @enderror">{{ is_null($answer) ? '' : $answer->answer_text  }}</textarea>
                                                 @error('answer')
                                                 <span class="invalid-feedback" role="alert">
@@ -102,8 +102,8 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <button class="btn btn-success btn-block">Klaim</button>
-                                                <a href="{{ route('user.founds.others.list') }}" class="btn btn-warning btn-block">Kembali</a>
+                                                <button class="btn btn-success btn-block">{{ __('label.claim') }}</button>
+                                                <a href="{{ route('user.founds.others.list') }}" class="btn btn-warning btn-block">{{ __('label.back') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +120,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Chat</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ __('label.chat') }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -167,7 +167,7 @@
                                     <textarea id="chat-input" class="form-control"></textarea>
                                 </div>
                                 <div class="col-12 mt-2">
-                                    <button id="send-chat-button" class="btn btn-success btn-block">Send</button>
+                                    <button id="send-chat-button" class="btn btn-success btn-block">{{ __('label.send') }}</button>
                                 </div>
                             </div>
                         </div>
