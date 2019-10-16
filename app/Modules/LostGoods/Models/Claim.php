@@ -25,4 +25,9 @@ class Claim extends Model
     {
         return $this->hasMany(Answer::class);
     }
+
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'claim_id', 'id');
+    }
 }

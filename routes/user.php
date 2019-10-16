@@ -74,6 +74,9 @@ Route::group(['namespace' => 'User'], function ($route) {
         $route->post('/notifications/{notificationId}/mark-as-visited', 'Notification\MarkNotificationAsVisitedHandler')
             ->name('user.notifications.mark-as-visited')
             ->where('notificationId', '[0-9]+');
+
+        $route->post('/claim/{claimId}/chat', 'Claim\SendLostGoodClaimChat')
+            ->name('user.claim.chat');
     });
 
     $route->get('/founds/others/list', 'Found\Other\ShowOthersFoundListHandler')

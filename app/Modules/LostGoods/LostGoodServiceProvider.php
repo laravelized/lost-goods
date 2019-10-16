@@ -10,8 +10,10 @@ namespace App\Modules\LostGoods;
 
 use App\Modules\LostGoods\Events\ClaimWasAccepted;
 use App\Modules\LostGoods\Events\ClaimWasRejected;
+use App\Modules\LostGoods\Events\LostGoodClaimChatSaved;
 use App\Modules\LostGoods\Listeners\AddNotificationThatClaimWasAccepted;
 use App\Modules\LostGoods\Listeners\AddNotificationThatClaimWasRejected;
+use App\Modules\LostGoods\Listeners\BroadcastChat;
 use App\Modules\LostGoods\Policies\LostGoodPolicy;
 use App\Modules\LostGoods\Policies\QuestionPolicy;
 use App\Modules\LostGoods\Repositories\LostGoodImageRepository\LostGoodImageRepository;
@@ -36,6 +38,9 @@ class LostGoodServiceProvider extends EventServiceProvider
         ],
         ClaimWasAccepted::class => [
             AddNotificationThatClaimWasAccepted::class
+        ],
+        LostGoodClaimChatSaved::class => [
+            BroadcastChat::class
         ]
     ];
 

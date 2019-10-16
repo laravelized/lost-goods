@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User\Found\Other;
 
 use App\Http\Controllers\Controller;
 use App\Modules\LostGoods\Models\Answer;
+use App\Modules\LostGoods\Models\Chat;
 use App\Modules\LostGoods\Models\Claim;
 use App\Modules\LostGoods\Models\LostGood;
 use Illuminate\Http\Request;
@@ -30,11 +31,17 @@ class ShowClaimFoundFormHandler extends Controller
                     ->first();
             }
 
+            $chats = collect([]);
+            if (!is_null($claim)) {
+                $chats = Chat::where('claim_id', $claim->id)->get();
+            }
+
             return view('user.claim.index', [
                 'claim' => $claim,
                 'questions' => $questions,
                 'lostGood' => $lostGood,
-                'answer' => $answer
+                'answer' => $answer,
+                'chats' => $chats
             ]);
 
         } catch (\Exception $exception) {

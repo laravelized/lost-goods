@@ -56,7 +56,10 @@
                             </div>
                             @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::ACCEPTED)
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-success btn-block">Silahkan hubungi {{ $lostGood->user->mobile_number }}</button>
+                                <button class="btn btn-primary btn-block">Silahkan hubungi {{ $lostGood->user->mobile_number }}</button>
+                            </div>
+                            <div class="col-md-12 text-center mt-3">
+                                <button id="open-chat-modal-button" class="btn btn-warning btn-block">Chat</button>
                             </div>
                             @endif
                         </div>
@@ -112,6 +115,67 @@
             </div>
         </div>
     @endif
+
+    <div class="modal fade" id="chat-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Chat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row" id="chats-container" style="max-height: 500px; overflow: scroll;">
+                                @forelse($chats as $chat)
+                                    @if(request()->user()->id === $chat->user_id)
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-6"></div>
+                                                <div class="col-6 float-left">
+                                                    <div class="alert alert-success">
+                                                        {{ $chat->content }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-6 float-left">
+                                                    <div class="alert alert-secondary">
+                                                        {{ $chat->content }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @empty
+                                    <div class="col-md-12">
+                                        <div class="alert alert-secondary text-center">
+                                            <strong>{{ __('label.no_chats') }}</strong>.
+                                        </div>
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <textarea id="chat-input" class="form-control"></textarea>
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <button id="send-chat-button" class="btn btn-success btn-block">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('after-style')
@@ -119,14 +183,74 @@
 @endpush
 
 @push('after-script')
+    @if(!is_null($claim))
+    <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+    @endif
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
         $(document).ready(function () {
+            var currentUserId = "{{ request()->user()->id }}";
+
+            function getCurrentUserChannelBubble(content) {
+                return '<div class="col-md-12"><div class="row"><div class="col-6"></div><div class="col-6 float-left"> <div class="alert alert-success">' + content +'</div> </div> </div> </div>';
+            }
+
+            function getAnotherUserChannelBubble(content) {
+                return '<div class="col-md-12"><div class="row"><div class="col-6 float-left"> <div class="alert alert-secondary">' + content +'</div> </div> </div> </div>';
+            }
+
+            $('#open-chat-modal-button').on('click', function () {
+                $('#chat-modal').modal({
+                    backdrop: 'static'
+                });
+            });
+
             $('#date_of_found_input').datepicker({
                 orientation: "bottom",
                 format: 'yyyy-mm-dd',
                 autoclose: true
             });
+
+            @if(!is_null($claim))
+
+            var claimId = "{{ $claim->id }}";
+            var channelName = "claim@" + claimId;
+            var pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
+                cluster: '{{ config('broadcasting.connections.pusher.options.cluster') }}',
+                forceTLS: true
+            });
+
+            var channel = pusher.subscribe(channelName);
+            channel.bind('message-incoming', function(data) {
+                if (parseInt(data.user_id) === parseInt(currentUserId)) {
+                    $('#chats-container').append(getCurrentUserChannelBubble(data.message));
+                } else {
+                    $('#chats-container').append(getAnotherUserChannelBubble(data.message));
+                }
+                setTimeout(function () {
+                    var chatsContainer = document.getElementById("chats-container");
+                    chatsContainer.scrollTop = chatsContainer.scrollHeight;
+                }, 100);
+            });
+
+
+
+            $('#send-chat-button').on('click', function () {
+                var url = "{{ route('user.claim.chat', ['claimId' => $claim->id]) }}";
+                var request = $.post(url, {
+                    message: $('#chat-input').val()
+                });
+                request
+                    .then(function (response) {
+                        console.log(error);
+                        $('#chat-input').val("");
+                    })
+                    .catch(function (error) {
+                        $('#chat-input').val("");
+                    })
+            });
+            @endif
         });
     </script>
 @endpush

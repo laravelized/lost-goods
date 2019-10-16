@@ -145,6 +145,18 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'good_name' => 'Nama barang',
+        'lost_date' => 'Tanggal kehilangan',
+        'lost_place' => 'Tempat kehilangan',
+        'found_date' => 'Tanggal penemuan',
+        'found_place' => 'Tempat penemuan',
+        'date_of_lost' => 'Tanggal kehilangan',
+        'place_of_lost' => 'Tanggal kehilangan',
+        'date_of_found' => 'Tanggal penemuan',
+        'place_of_found' => 'Tempat penemuan',
+        'email' => 'Email',
+        'address' => 'Alamat'
+    ],
 
 ];
