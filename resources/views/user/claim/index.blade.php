@@ -55,11 +55,7 @@
                                 </table>
                             </div>
                             @if($claim->status === \App\Modules\LostGoods\Enum\LostGoodClaimStatusEnum::ACCEPTED)
-                            <div class="col-md-12 text-center">
-                                <button class="btn btn-primary btn-block">{{ __('label.please_contact') }}{{ $lostGood->user->mobile_number }}</button>
-                            </div>
                             <div class="col-md-12 text-center mt-3">
-                                <button id="open-chat-modal-button" class="btn btn-warning btn-block">{{ __('label.chat') }}</button>
                                 <a target="_blank" class="btn btn-success btn-block" href="https://wa.me/{{ str_replace("0", "62", $lostGood->user->mobile_number) }}"><i class="fab fa-whatsapp"></i> {{ __('label.chat_whatsapp') }}</a>
                             </div>
                             @endif
