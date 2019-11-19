@@ -45,7 +45,7 @@
                                         {{ $user->full_name }}
                                     </td>
                                     <td>
-                                        @if($user->gender)
+                                        @if(!$user->gender)
                                             {{ __('genders.male') }}
                                         @else
                                             {{ __('genders.female') }}
