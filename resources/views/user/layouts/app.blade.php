@@ -46,6 +46,7 @@
 @stack('before-script')
 
 <script src="{{ asset('js/user.all.js') }}"></script>
+<script src="https://kit.fontawesome.com/25d90a0eb7.js"></script>
 <script>
     $.ajaxSetup({
         headers: {
