@@ -108,6 +108,7 @@ return [
     'please_contact' => 'Harap hubungi ',
     'no_chats' => 'Tidak ada chat yang bisa ditampilkan',
     'chat_whatsapp' => 'Chat Whatsapp',
+    'detail_informations' => 'Informasi detail',
     'something_went_wrong' => 'Terjadi sebuah kesalahan di server kami, mohon ulangi lagi',
     'answer_question_about_the_goods' => 'Jawab pertanyaan sesuai yang anda ketahui tentang barang tersebut'
 ];
