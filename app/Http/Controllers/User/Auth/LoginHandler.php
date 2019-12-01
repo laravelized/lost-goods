@@ -57,7 +57,7 @@ class LoginHandler extends Controller
         } catch (\Exception $exception) {
 
             return back()
-                ->with(NotificationKeys::EXCEPTION, $exception->getMessage());
+                ->with(NotificationKeys::EXCEPTION, 'exceptions.' . $exception->getMessage());
         }
     }
 }
